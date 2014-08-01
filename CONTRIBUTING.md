@@ -12,6 +12,7 @@ Enforce the guidelines outlined in General Workflow. Comment and reject the pull
 
 ## General Workflow
 For details on some of these steps, see Detailed Workflow section.
+
 1. Fork the repo
 1. Clone your fork
 1. Add the original repo as an upstream remote
@@ -114,7 +115,6 @@ else, just repeat again.
 Thanks for contributing!
 
 ### Guidelines
-
 1. Uphold the current code standard:
     - Keep your code DRY.
     - Apply the boy scout rule (always leave the code cleaner than you found it).
