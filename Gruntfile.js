@@ -77,22 +77,6 @@ module.exports = function (grunt) {
         ],
         tasks: ['newer:jshint:all', 'karma']
       },
-      injectStylus: {
-        files: [
-          '<%= yeoman.client %>/{app,components}/**/*.styl'],
-        tasks: ['injector:stylus']
-      },
-      stylus: {
-        files: [
-          '<%= yeoman.client %>/{app,components}/**/*.styl'],
-        tasks: ['stylus', 'autoprefixer']
-      },
-      jade: {
-        files: [
-          '<%= yeoman.client %>/{app,components}/*',
-          '<%= yeoman.client %>/{app,components}/**/*.jade'],
-        tasks: ['jade']
-      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -217,7 +201,7 @@ module.exports = function (grunt) {
       target: {
         src: '<%= yeoman.client %>/index.html',
         ignorePath: '<%= yeoman.client %>/',
-        exclude: [/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/', /bootstrap.css/, /font-awesome.css/ ]
+        exclude: [/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/']
       }
     },
 
@@ -376,12 +360,8 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'jade',
-        'stylus',
       ],
       test: [
-        'jade',
-        'stylus',
       ],
       debug: {
         tasks: [
@@ -393,8 +373,6 @@ module.exports = function (grunt) {
         }
       },
       dist: [
-        'jade',
-        'stylus',
         'imagemin',
         'svgmin'
       ]
@@ -438,43 +416,6 @@ module.exports = function (grunt) {
       all: localConfig
     },
 
-    // Compiles Jade to html
-    jade: {
-      compile: {
-        options: {
-          data: {
-            debug: false
-          }
-        },
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.client %>',
-          src: [
-            '{app,components}/**/*.jade'
-          ],
-          dest: '.tmp',
-          ext: '.html'
-        }]
-      }
-    },
-
-    // Compiles Stylus to CSS
-    stylus: {
-      server: {
-        options: {
-          paths: [
-            '<%= yeoman.client %>/bower_components',
-            '<%= yeoman.client %>/app',
-            '<%= yeoman.client %>/components'
-          ],
-          "include css": true
-        },
-        files: {
-          '.tmp/app/app.css' : '<%= yeoman.client %>/app/app.styl'
-        }
-      }
-    },
-
     injector: {
       options: {
 
@@ -497,25 +438,6 @@ module.exports = function (grunt) {
                '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.spec.js',
                '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js']
             ]
-        }
-      },
-
-      // Inject component styl into app.styl
-      stylus: {
-        options: {
-          transform: function(filePath) {
-            filePath = filePath.replace('/client/app/', '');
-            filePath = filePath.replace('/client/components/', '');
-            return '@import \'' + filePath + '\';';
-          },
-          starttag: '// injector',
-          endtag: '// endinjector'
-        },
-        files: {
-          '<%= yeoman.client %>/app/app.styl': [
-            '<%= yeoman.client %>/{app,components}/**/*.styl',
-            '!<%= yeoman.client %>/app/app.styl'
-          ]
         }
       },
 
@@ -564,7 +486,6 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:stylus', 
         'concurrent:server',
         'injector',
         'bowerInstall',
@@ -576,7 +497,6 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'env:all',
-      'injector:stylus', 
       'concurrent:server',
       'injector',
       'bowerInstall',
@@ -606,7 +526,6 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:stylus', 
         'concurrent:test',
         'injector',
         'autoprefixer',
@@ -619,7 +538,6 @@ module.exports = function (grunt) {
         'clean:server',
         'env:all',
         'env:test',
-        'injector:stylus', 
         'concurrent:test',
         'injector',
         'bowerInstall',
@@ -637,7 +555,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'injector:stylus', 
     'concurrent:dist',
     'injector',
     'bowerInstall',

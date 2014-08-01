@@ -10,11 +10,12 @@
     "socketsNeedle": "// Insert sockets below",
     "filters": {
       "js": true,
-      "jade": true,
-      "stylus": true,
+      "html": true,
+      "css": true,
       "uirouter": true,
       "bootstrap": true,
-      "uibootstrap": false,
+      "uibootstrap": true,
+      "socketio": true,
       "mongoose": true,
       "auth": true,
       "oauth": true,
@@ -34,8 +35,8 @@
     ],
     "extensions": [
       "js",
-      "jade",
-      "styl"
+      "html",
+      "css"
     ]
   }
 }
