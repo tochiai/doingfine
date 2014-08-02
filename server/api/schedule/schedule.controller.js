@@ -13,6 +13,7 @@ exports.index = function(req, res) {
 
 // Get a single schedule
 exports.show = function(req, res) {
+  console.log(req.params);
   Schedule.findById(req.params.id, function (err, schedule) {
     if(err) { return handleError(res, err); }
     if(!schedule) { return res.send(404); }

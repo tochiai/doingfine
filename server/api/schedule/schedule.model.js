@@ -4,8 +4,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var ScheduleSchema = new Schema({
-  name: String,
-  info: String,
+  days: [Number],
+  times: [String],
   active: Boolean
 });
 
