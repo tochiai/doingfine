@@ -1,7 +1,10 @@
 //require the Twilio module and create a REST client
 var ACCOUNT_SID = 'ACcc6bd88977d0eddd1ff935ecbc2cacee';
 var AUTH_TOKEN = 'c9ba89f331e84936155f1916a5bca2fb';
+
 var client = require('twilio')(ACCOUNT_SID, AUTH_TOKEN);
+// awesome node twilio docs: http://twilio.github.io/twilio-node/
+
 
 module.exports.sendText = function(phone, msg) {
 	//Send an text message
