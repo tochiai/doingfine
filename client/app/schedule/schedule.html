@@ -2,21 +2,21 @@
 <!-- TODO: Toggle two states. Set schedule or Confirm -->
 <div class="col-md-12" ng-if="!submitted">
   <h2>Set Schedule</h2>
-  <div>
-    <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
-  </div>
-  <form>
+  <form name="schedule" ng-submit="submit(schedule)">
+    <div>
+      <timepicker ng-model="sender.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+    </div>
     <ul style="list-style: none;">
-      <li><input type="checkbox"><label>&nbsp; Monday</label></li>
-      <li><input type="checkbox"><label>&nbsp; Tuesday</label></li>
-      <li><input type="checkbox"><label>&nbsp; Wednesday</label></li>
-      <li><input type="checkbox"><label>&nbsp; Thursday</label></li>
-      <li><input type="checkbox"><label>&nbsp; Friday</label></li>
-      <li><input type="checkbox"><label>&nbsp; Saturday</label></li>
-      <li><input type="checkbox"><label>&nbsp; Sunday</label></li>
+      <li><input type="checkbox" ng-model="sender.day.1"value="1"><label>&nbsp; Monday</label></li>
+      <li><input type="checkbox" ng-model="sender.day.2"value="2"><label>&nbsp; Tuesday</label></li>
+      <li><input type="checkbox" ng-model="sender.day.3"value="3"><label>&nbsp; Wednesday</label></li>
+      <li><input type="checkbox" ng-model="sender.day.4"value="4"><label>&nbsp; Thursday</label></li>
+      <li><input type="checkbox" ng-model="sender.day.5"value="5"><label>&nbsp; Friday</label></li>
+      <li><input type="checkbox" ng-model="sender.day.6"value="6"><label>&nbsp; Saturday</label></li>
+      <li><input type="checkbox" ng-model="sender.day.7"value="7"><label>&nbsp; Sunday</label></li>
     </ul>
+    <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp; Submit</button>
   </form>
-  <button type="submit" class="btn btn-primary" ng-click="submit()"><i class="fa fa-check"></i>&nbsp; Submit</button>
 </div>
 
 <div class=" col-md-12" style="text-align: center;" ng-if="submitted">

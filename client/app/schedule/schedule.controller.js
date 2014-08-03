@@ -1,16 +1,26 @@
 'use strict';
 
 angular.module('doingFineApp')
-  .controller('ScheduleCtrl', function ($scope) {
+  .controller('ScheduleCtrl', function ($scope, Setup) {
+    //verify that data from '/setup' state persists through Setup factory
+    console.log(Setup.sender);
+
+    $scope.sender = Setup.sender;
+
+
     //boolean used to toggle schedule setup and confirmation screens
     $scope.submitted = false;
 
-    $scope.submit = function(){
-      $scope.submitted = true;
+    $scope.submit = function(form){
+      if(form.$valid){
+        $scope.submitted = true;
+        Setup.sender = $scope.sender;
+        console.log(Setup.sender);
+        console.log($scope.sender);
+      }
     };
 
-
-    $scope.mytime = new Date();
+    $scope.sender.time = new Date();
 
     $scope.hstep = 1;
     $scope.mstep = 1;
@@ -29,14 +39,14 @@ angular.module('doingFineApp')
       var d = new Date();
       d.setHours( 14 );
       d.setMinutes( 0 );
-      $scope.mytime = d;
+      $scope.sender.time = d;
     };
 
     $scope.changed = function () {
-      console.log('Time changed to: ' + $scope.mytime);
+      console.log('Time changed to: ' + $scope.sender.time);
     };
 
     $scope.clear = function() {
-      $scope.mytime = null;
+      $scope.sender.time = null;
     };
   });

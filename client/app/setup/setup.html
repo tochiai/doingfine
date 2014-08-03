@@ -1,17 +1,19 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="col-md-12">
   <h2>Who are you scheduling?</h2>
-  <form>
+  <form name="who" ng-submit="submit(who)">
+
     <div class="input-group">
       <label>Name:</label>
-      <input type="text" class="form-control" placeholder="Name">
+      <input type="text" class="form-control" placeholder="Name" ng-model="sender.name">
     </div>
+
     <!-- TODO: validate phone number -->
     <div class="input-group">
       <label>Phone:</label>
-      <input type="text" class="form-control" placeholder="Phone number">
+      <input type="text" class="form-control" placeholder="Phone number" ng-model="sender.phone">
     </div>
-    <br />
-    <a href="/schedule"><button type="submit" class="btn btn-primary">Next</button></a>
+
+    <button type="submit" class="btn btn-primary">Next</button>
   </form>
 </div>
