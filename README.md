@@ -1,12 +1,13 @@
-# Trukable
+# Doing Fine
 
-> Trukable does things.
+> Doing Fine updates you on your loved ones
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Nelson Riley
+  - __Scrum Master__: Andrew Zey
+  - __Development Team Members__: Walker Mellema, Shawn Hartley
+  - __Repo Man__: Tyler Ochiai
 
 ## Table of Contents
 
@@ -25,10 +26,6 @@
 ## Requirements
 
 - Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
 
 ## Development
 
@@ -38,6 +35,7 @@ From within the root directory:
 
 ```sh
 sudo npm install -g bower
+sudo npm install -g grunt
 npm install
 bower install
 ```

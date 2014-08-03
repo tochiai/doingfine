@@ -6,6 +6,7 @@ angular.module('doingFineApp')
       .state('schedule', {
         url: '/schedule',
         templateUrl: 'app/schedule/schedule.html',
-        controller: 'ScheduleCtrl'
+        controller: 'ScheduleCtrl',
+        authenticate: true
       });
   });
