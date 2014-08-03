@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('doingFineApp')
-  .controller('ScheduleCtrl', function ($scope) {
+  .controller('ScheduleCtrl', function ($scope, Setup) {
+    //verify that data from '/setup' state persists through Setup factory
+    console.log(Setup.sender);
+
     //boolean used to toggle schedule setup and confirmation screens
     $scope.submitted = false;
 
