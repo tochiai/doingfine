@@ -6,6 +6,7 @@ angular.module('doingFineApp')
       .state('setup', {
         url: '/setup',
         templateUrl: 'app/setup/setup.html',
-        controller: 'SetupCtrl'
+        controller: 'SetupCtrl',
+        authenticate: true
       });
   });
