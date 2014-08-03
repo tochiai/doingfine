@@ -8,7 +8,7 @@ var schedule = new Schedule({
   days: [1, 2, 3],
   times: ['06:20'],
   active: true,
-  phone: 5555555555
+  phone: '5555555555'
 });
 
 describe('Schedule Model', function() {
@@ -22,6 +22,12 @@ describe('Schedule Model', function() {
   afterEach(function(done) {
     Schedule.remove().exec().then(function() {
       done();
+    });
+    schedule = new Schedule({
+      days: [1, 2, 3],
+      times: ['06:20'],
+      active: true,
+      phone: '5555555555'
     });
   });
 
@@ -42,7 +48,7 @@ describe('Schedule Model', function() {
     });
   });
 
-  it('should fail when saving without an days', function(done) {
+  it('should fail when saving without days', function(done) {
     schedule.days = [];
     schedule.save(function(err) {
       should.exist(err);
@@ -50,29 +56,43 @@ describe('Schedule Model', function() {
     });
   });
 
-  it('should fail when saving without a phone', function(done) {
-    schedule.phone = 5555555555;
+  it('should fail when saving a phone number thats too short', function(done) {
+    schedule.phone = '+5555555';
     schedule.save(function(err) {
       should.exist(err);
       done();
     });
   });
 
-  it('should fail when saving without a times', function(done) {
+  it('should fail when saving a phone number thats too long', function(done) {
+    schedule.phone = '+3838438483483848345555555';
+    schedule.save(function(err) {
+      should.exist(err);
+      done();
+    });
+  });
+
+  it('should fail when saving a phone number that doesnt start with +', function(done) {
+    schedule.phone = '122345678901';
+    schedule.save(function(err) {
+      should.exist(err);
+      done();
+    });
+  });
+
+  it('should fail when saving a phone number with second char 1', function(done) {
+    schedule.phone = '+22345678901';
+    schedule.save(function(err) {
+      should.exist(err);
+      done();
+    });
+  });
+
+  it('should fail when saving without times', function(done) {
     schedule.times = [];
     schedule.save(function(err) {
       should.exist(err);
       done();
     });
   });
-
-  it('should fail when saving without an active', function(done) {
-    schedule.active = true;
-    schedule.save(function(err) {
-      should.exist(err);
-      done();
-    });
-  });
-
-  // TODO: Authenticate phone number
 });
