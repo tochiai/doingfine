@@ -7,8 +7,7 @@ var Schedule = require('./schedule.model');
 var schedule = new Schedule({
   days: [1, 2, 3],
   times: ['06:20'],
-  active: true,
-  phone: '5555555555'
+  subscriberPhone: '5555555555'
 });
 
 describe('Schedule Model', function() {
@@ -26,8 +25,7 @@ describe('Schedule Model', function() {
     schedule = new Schedule({
       days: [1, 2, 3],
       times: ['06:20'],
-      active: true,
-      phone: '5555555555'
+      subscriberPhone: '5555555555'
     });
   });
 
@@ -57,7 +55,7 @@ describe('Schedule Model', function() {
   });
 
   it('should fail when saving a phone number thats too short', function(done) {
-    schedule.phone = '+5555555';
+    schedule.subscriberPhone = '+5555555';
     schedule.save(function(err) {
       should.exist(err);
       done();
@@ -65,7 +63,7 @@ describe('Schedule Model', function() {
   });
 
   it('should fail when saving a phone number thats too long', function(done) {
-    schedule.phone = '+3838438483483848345555555';
+    schedule.subscriberPhone = '+3838438483483848345555555';
     schedule.save(function(err) {
       should.exist(err);
       done();
@@ -73,7 +71,7 @@ describe('Schedule Model', function() {
   });
 
   it('should fail when saving a phone number that doesnt start with +', function(done) {
-    schedule.phone = '122345678901';
+    schedule.subscriberPhone = '122345678901';
     schedule.save(function(err) {
       should.exist(err);
       done();
@@ -81,7 +79,7 @@ describe('Schedule Model', function() {
   });
 
   it('should fail when saving a phone number with second char 1', function(done) {
-    schedule.phone = '+22345678901';
+    schedule.subscriberPhone = '+22345678901';
     schedule.save(function(err) {
       should.exist(err);
       done();

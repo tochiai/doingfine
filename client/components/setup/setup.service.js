@@ -8,5 +8,5 @@ angular.module('doingFineApp')
     };
     return {
       publisher: publisher
-    }
+    };
   });
