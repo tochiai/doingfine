@@ -49,7 +49,6 @@ describe('POST /api/schedules', function() {
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err) return done(err);
-        console.log("BODY ", res.body);
         getNew(res.body._id);
       });
 
