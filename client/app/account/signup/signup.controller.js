@@ -16,7 +16,6 @@ angular.module('doingFineApp')
           password: $scope.user.password,
         })
         .then( function() {
-          console.log('New User Created');
           // Account created, redirect to home
           $location.path('/setup');
         })

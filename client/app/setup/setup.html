@@ -5,13 +5,15 @@
 
     <div class="input-group">
       <label>Name:</label>
-      <input type="text" class="form-control" placeholder="Name" ng-model="sender.name">
+      <input type="text" class="form-control" required placeholder="Name" ng-model="publisher.name">
     </div>
 
     <!-- TODO: validate phone number -->
     <div class="input-group">
       <label>Phone:</label>
-      <input type="text" class="form-control" placeholder="Phone number" ng-model="sender.phone">
+      <input type="tel" name="tel" class="form-control" ng-model="publisher.phone"
+             required
+             ui-mask="(999) 999-9999" placeholder="(___) ___-____"/>
     </div>
 
     <button type="submit" class="btn btn-primary">Next</button>

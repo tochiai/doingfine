@@ -2,9 +2,11 @@
 
 angular.module('doingFineApp')
   .factory('Setup', function () {
-    var sender = {};
-
+    var publisher = {};
+    var submit = function(){
+      //submit post request to server
+    };
     return {
-      sender: sender
+      publisher: publisher
     }
   });

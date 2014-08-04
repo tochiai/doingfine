@@ -3,9 +3,9 @@
 angular.module('doingFineApp')
   .controller('ScheduleCtrl', function ($scope, Setup) {
     //verify that data from '/setup' state persists through Setup factory
-    console.log(Setup.sender);
+    console.log(Setup.publisher);
 
-    $scope.sender = Setup.sender;
+    $scope.publisher = Setup.publisher;
 
 
     //boolean used to toggle schedule setup and confirmation screens
@@ -14,13 +14,14 @@ angular.module('doingFineApp')
     $scope.submit = function(form){
       if(form.$valid){
         $scope.submitted = true;
-        Setup.sender = $scope.sender;
-        console.log(Setup.sender);
-        console.log($scope.sender);
+        Setup.publisher = $scope.publisher;
+        Setup.publisher.time = $scope.publisher.time.getHours() + ":" + $scope.publisher.time.getMinutes();
+        console.log(Setup.publisher);
+        console.log($scope.publisher);
       }
     };
 
-    $scope.sender.time = new Date();
+    $scope.publisher.time = new Date();
 
     $scope.hstep = 1;
     $scope.mstep = 1;
@@ -39,14 +40,14 @@ angular.module('doingFineApp')
       var d = new Date();
       d.setHours( 14 );
       d.setMinutes( 0 );
-      $scope.sender.time = d;
+      $scope.publisher.time = d;
     };
 
     $scope.changed = function () {
-      console.log('Time changed to: ' + $scope.sender.time);
+      console.log('Time changed to: ' + $scope.publisher.time);
     };
 
     $scope.clear = function() {
-      $scope.sender.time = null;
+      $scope.publisher.time = null;
     };
   });
