@@ -2,11 +2,11 @@
 
 angular.module('doingFineApp')
   .factory('Setup', function () {
-    var publisher = {};
+    var schedule = {};
     var submit = function(){
       //submit post request to server
     };
     return {
-      publisher: publisher
+      schedule: schedule
     };
   });
