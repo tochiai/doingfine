@@ -6,5 +6,5 @@ angular.module('doingFineApp')
 
     return {
       sender: sender
-    }
+    };
   });
