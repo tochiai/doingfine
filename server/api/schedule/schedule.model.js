@@ -6,8 +6,10 @@ var mongoose = require('mongoose'),
 var ScheduleSchema = new Schema({
   days: [Number],
   times: [String],
-  active: Boolean,
-  phone: String
+  publisherPhone: String,
+  publisherName: String,
+  subscriberPhone: String,
+  subscriberName: String
 });
 
 ScheduleSchema.path('days')
@@ -20,17 +22,17 @@ ScheduleSchema.path('times')
     return times.length
   }, 'One time must be selected');
 
-ScheduleSchema.path('phone')
+ScheduleSchema.path('subscriberPhone')
   .validate(function(phone){
     return phone.length === 12
   }, 'Phone number should have 12 digits');
 
-ScheduleSchema.path('phone')
+ScheduleSchema.path('subscriberPhone')
   .validate(function(phone){
     return phone[0] === '+'
   }, 'Phone number should start with +');
 
-ScheduleSchema.path('phone')
+ScheduleSchema.path('subscriberPhone')
   .validate(function(phone){
     return phone[1] === '1'
   }, 'First number in phone number should be 1');
