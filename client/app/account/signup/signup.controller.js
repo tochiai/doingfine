@@ -11,10 +11,12 @@ angular.module('doingFineApp')
       if(form.$valid) {
         Auth.createUser({
           name: $scope.user.name,
+          phone: '+1' + $scope.user.phone,
           email: $scope.user.email,
-          password: $scope.user.password
+          password: $scope.user.password,
         })
         .then( function() {
+          console.log('New User Created');
           // Account created, redirect to home
           $location.path('/setup');
         })
