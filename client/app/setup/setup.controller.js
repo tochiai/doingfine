@@ -6,9 +6,9 @@ angular.module('doingFineApp')
     //will have schedule.name and schedule.phone
     $scope.schedule = {};
     User.get(function(result){
-      console.log(result);
       $scope.schedule.subscriberName = result.name;
       $scope.schedule.subscriberPhone = result.phone;
+      $scope.schedule.subscriberID = result._id;
     });
 
     $scope.submit = function(form){

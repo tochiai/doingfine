@@ -84,7 +84,8 @@ angular.module('doingFineApp')
         //   publisherPhone: String,
         //   publisherName: String,
         //   subscriberPhone: String,
-        //   subscriberName: String
+        //   subscriberName: String,
+        //   subscriberID: String
         // }
 
         // console.log(Setup.schedule);
