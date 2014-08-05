@@ -10,7 +10,7 @@ module.exports.sendText = function(phone, msg) {
 	//Send an text message
 	client.sendMessage({
 
-    to: '+1' + phone,
+    to: phone,
     from: '+18052904005', // A number you bought from Twilio and can use for outbound communication
     body: msg // body of the SMS message
 
