@@ -1,6 +1,6 @@
-var cron = require('cron'); 
-var twilio = require('./../df.twilio/df.twilio.js');
+var cron = require('cron');
 var Schedule = require('../../api/schedule/schedule.model');
+var twilio = require('./../df.twilio/df.twilio.js');
 var moment = require('moment');
 var _ = require('lodash');
 moment().format();
