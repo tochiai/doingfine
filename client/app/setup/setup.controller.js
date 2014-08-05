@@ -1,18 +1,23 @@
 'use strict';
 
 angular.module('doingFineApp')
-  .controller('SetupCtrl', function ($scope, $location, Setup) {
+  .controller('SetupCtrl', function ($scope, $location, Setup, User) {
     //namespaced variable for models defined in template
     //will have schedule.name and schedule.phone
     $scope.schedule = {};
+    User.get(function(result){
+      console.log(result);
+      $scope.schedule.subscriberName = result.name;
+      $scope.schedule.subscriberPhone = result.phone;
+    });
 
     $scope.submit = function(form){
       if(form.$valid) {
         //persist form data in Setup factory
-        Setup.schedule.name = $scope.schedule.name;
-        Setup.schedule.phone = $scope.schedule.phone;
+        Setup.schedule = $scope.schedule;
+        Setup.schedule.publisherPhone = "+1" + $scope.schedule.publisherPhone;
 
-        console.log('Name and Phone Submitted!');
+        console.log('Publisher Name and Phone Submitted!');
 
         $location.path('/schedule');
       }

@@ -31,10 +31,6 @@ angular.module('doingFineApp')
       $scope.schedule.times = d;
     };
 
-    $scope.changed = function () {
-      console.log('Time changed to: ' + $scope.schedule.times);
-    };
-
     $scope.clear = function() {
       $scope.schedule.times = null;
     };
@@ -79,10 +75,12 @@ angular.module('doingFineApp')
         // Setup.schedule.
         Setup.schedule.times = [$scope.schedule.times.getHours() + ":" + $scope.schedule.times.getMinutes()];
         console.log($scope.schedule);
+
+        Setup.submit($scope.schedule);
         //Do AJAX request that sends object in the following format (coming from schedule Schema):
         //{
-        //   days: [Number],
-        //   times: [String],
+        //   days: [Number], //0 = Sunday, 1 = Monday, etc...
+        //   times: [String], //24-hour format eg. 20:17
         //   publisherPhone: String,
         //   publisherName: String,
         //   subscriberPhone: String,
