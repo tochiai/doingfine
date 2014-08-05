@@ -2,18 +2,22 @@
 <!-- TODO: Toggle two states. Set schedule or Confirm -->
 <div class="col-md-12" ng-if="!submitted">
   <h2>Set Schedule</h2>
-  <form name="schedule" ng-submit="submit(schedule)">
+  <form name="scheduleForm" ng-submit="submit(scheduleForm)">
     <div>
-      <timepicker ng-model="sender.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+      <timepicker ng-model="schedule.times" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
     </div>
+
+    <p ng-click="testSubmit()">{{schedule.testValue}}</p>
     <ul style="list-style: none;">
-      <li><input type="checkbox" ng-model="sender.day.1"value="1"><label>&nbsp; Monday</label></li>
-      <li><input type="checkbox" ng-model="sender.day.2"value="2"><label>&nbsp; Tuesday</label></li>
-      <li><input type="checkbox" ng-model="sender.day.3"value="3"><label>&nbsp; Wednesday</label></li>
-      <li><input type="checkbox" ng-model="sender.day.4"value="4"><label>&nbsp; Thursday</label></li>
-      <li><input type="checkbox" ng-model="sender.day.5"value="5"><label>&nbsp; Friday</label></li>
-      <li><input type="checkbox" ng-model="sender.day.6"value="6"><label>&nbsp; Saturday</label></li>
-      <li><input type="checkbox" ng-model="sender.day.7"value="7"><label>&nbsp; Sunday</label></li>
+      <li ng-repeat="day in days">
+        <input
+          type="checkbox"
+          name="scheduleDays[]"
+          value="day.value"
+          ng-checked="schedule.days.indexOf(day.value) > -1"
+          ng-click="toggleDay(day)"
+        ><label>{{ day.name }}</label>
+      </li>
     </ul>
     <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp; Submit</button>
   </form>

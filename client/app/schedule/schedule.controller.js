@@ -3,24 +3,13 @@
 angular.module('doingFineApp')
   .controller('ScheduleCtrl', function ($scope, Setup) {
     //verify that data from '/setup' state persists through Setup factory
-    console.log(Setup.sender);
+    console.log(Setup.schedule);
 
-    $scope.sender = Setup.sender;
+    $scope.schedule = Setup.schedule;
 
+    //TIME PICKER
 
-    //boolean used to toggle schedule setup and confirmation screens
-    $scope.submitted = false;
-
-    $scope.submit = function(form){
-      if(form.$valid){
-        $scope.submitted = true;
-        Setup.sender = $scope.sender;
-        console.log(Setup.sender);
-        console.log($scope.sender);
-      }
-    };
-
-    $scope.sender.time = new Date();
+    $scope.schedule.times = new Date();
 
     $scope.hstep = 1;
     $scope.mstep = 1;
@@ -39,14 +28,69 @@ angular.module('doingFineApp')
       var d = new Date();
       d.setHours( 14 );
       d.setMinutes( 0 );
-      $scope.sender.time = d;
-    };
-
-    $scope.changed = function () {
-      console.log('Time changed to: ' + $scope.sender.time);
+      $scope.schedule.times = d;
     };
 
     $scope.clear = function() {
-      $scope.sender.time = null;
+      $scope.schedule.times = null;
     };
+
+    //DAY PICKER
+
+    $scope.days = [
+      {name: 'Monday', value: 1},
+      {name: 'Tuesday', value: 2},
+      {name: 'Wednesday', value: 3},
+      {name: 'Thursday', value: 4},
+      {name: 'Friday', value: 5},
+      {name: 'Saturday', value: 6},
+      {name: 'Sunday', value: 0}
+    ];
+
+    $scope.schedule.days = [];
+
+    // toggle selection for a given day by name
+    $scope.toggleDay = function toggleDays(day) {
+      var idx = $scope.schedule.days.indexOf(day);
+
+      // is currently selected
+      if (idx > -1) {
+        $scope.schedule.days.splice(idx, 1);
+      }
+
+      // is newly selected
+      else {
+        $scope.schedule.days.push(day.value);
+      }
+    };
+
+    //FORM SUBMISSIONS
+
+    //boolean used to toggle schedule setup and confirmation screens
+    $scope.submitted = false;
+
+    $scope.submit = function(form){
+      if(form.$valid){
+        $scope.submitted = true;
+        // Setup.schedule.
+        Setup.schedule.times = [$scope.schedule.times.getHours() + ":" + $scope.schedule.times.getMinutes()];
+        console.log($scope.schedule);
+
+        Setup.submit($scope.schedule);
+        //Do AJAX request that sends object in the following format (coming from schedule Schema):
+        //{
+        //   days: [Number], //0 = Sunday, 1 = Monday, etc...
+        //   times: [String], //24-hour format eg. 20:17
+        //   publisherPhone: String,
+        //   publisherName: String,
+        //   subscriberPhone: String,
+        //   subscriberName: String
+        // }
+
+        // console.log(Setup.schedule);
+
+
+      }
+    };
+
   });
