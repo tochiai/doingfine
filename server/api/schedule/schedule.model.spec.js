@@ -11,9 +11,12 @@ var schedule = new Schedule({
 });
 
 describe('Schedule Model', function() {
-  before(function(done) {
+  beforeEach(function(done) {
     // Clear schedules before testing
     Schedule.remove().exec().then(function() {
+      Schedule.find({}, function(err, schedules) {
+        console.log('SCHED MODEL #####################', schedules);
+      });
       done();
     });
   });
@@ -29,13 +32,6 @@ describe('Schedule Model', function() {
     });
   });
 
-  it('should begin with no schedules', function(done) {
-    Schedule.find({}, function(err, schedules) {
-      schedules.should.have.length(0);
-      done();
-    });
-  });
-
   it('should fail when saving a duplicate schedule', function(done) {
     schedule.save(function() {
       var scheduleDup = new Schedule(schedule);
@@ -43,6 +39,13 @@ describe('Schedule Model', function() {
         should.exist(err);
         done();
       });
+    });
+  });
+
+  it('should begin with no schedules', function(done) {
+    Schedule.find({}, function(err, schedules) {
+      schedules.should.have.length(0);
+      done();
     });
   });
 

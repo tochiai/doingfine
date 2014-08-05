@@ -2,8 +2,10 @@
 var ACCOUNT_SID = 'ACcc6bd88977d0eddd1ff935ecbc2cacee';
 var AUTH_TOKEN = 'c9ba89f331e84936155f1916a5bca2fb';
 
+// twilio has amazing docs for node
+// see: http://twilio.github.io/twilio-node/
 var client = require('twilio')(ACCOUNT_SID, AUTH_TOKEN);
-// awesome node twilio docs: http://twilio.github.io/twilio-node/
+var fromPhone = process.env.NODE_ENV === 'production' ? '+18052904005' : '+18025324118';
 
 
 module.exports.sendText = function(phone, msg) {
@@ -11,7 +13,7 @@ module.exports.sendText = function(phone, msg) {
 	client.sendMessage({
 
     to: phone,
-    from: '+18052904005', // A number you bought from Twilio and can use for outbound communication
+    from: fromPhone, // A number you bought from Twilio and can use for outbound communication
     body: msg // body of the SMS message
 
 	}, function(err, responseData) { //this function is executed when a response is received from Twilio

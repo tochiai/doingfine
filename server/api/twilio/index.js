@@ -5,6 +5,6 @@ var controller = require('./twilio.controller');
 
 var router = express.Router();
 
-router.get('/', controller.respond);
+router.get('/', controller.checkin);
 
 module.exports = router;
