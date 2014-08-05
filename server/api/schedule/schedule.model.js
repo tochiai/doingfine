@@ -9,7 +9,8 @@ var ScheduleSchema = new Schema({
   publisherPhone: String,
   publisherName: String,
   subscriberPhone: String,
-  subscriberName: String
+  subscriberName: String,
+  subscriberID: String
 });
 
 ScheduleSchema.path('days')
