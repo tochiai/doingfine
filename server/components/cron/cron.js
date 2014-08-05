@@ -1,12 +1,12 @@
-var cron = require('cron');
-var Schedule = require('../../api/schedule/schedule.model');
+var cron = require('cron'); 
 var twilio = require('./../df.twilio/df.twilio.js');
+var Schedule = require('../../api/schedule/schedule.model');
 var moment = require('moment');
 var _ = require('lodash');
 moment().format();
 
-// get day as 0-6 and time as '13:15'
-var getDayTime = function() {
+// get Day as 0-6 and Time as '13:15' for Now (used to search schedules, then send checkins)
+var getDayTime = module.exports.getDayTime = function() {
 	var date = {};
 	var now = moment();
 	var hour = now.hour().toString();
@@ -18,32 +18,36 @@ var getDayTime = function() {
 		minute = '0' + minute;
 	}
 	date.day = now.day();
-	date.time = minute + ':' + hour;
+	date.time = hour + ':' + minute;
 	return date;
 };
 
-// send checkin updates to all schedule subscribers 
-var sendCheckins = function(schedules) {
+// send checkin updates to subscriber of each schedule passed in
+var sendCheckins = module.exports.sendCheckins = function(err, schedules) {
+	if(err) { throw err; };
 	var message = ' wants to know you are OK. Please check in by replying with any text message.';
 	_.forEach(schedules, function(schedule) {
 		twilio.sendText(schedule.publisherPhone, schedule.subscriberName + message);
 	});
 };
 
+// find all checkins scheduled for now
+var checkinsMatchingNow = module.exports.checkinsMatchingNow = function(cb) {
+	var now = getDayTime();
+	// find all schedules with current day and time
+	var query = {
+		times: { $in: [now.time] },
+		days: { $in: [now.day] }
+	};
+  Schedule.find(query, cb);
+};
+
+// kick off cron jobs
 module.exports.start = function() {
 	var CronJob = cron.CronJob;
+	// run every minute
 	new CronJob('00 */1 * * * *', function(){
-		var now = getDayTime();
-		// find all schedules with current day and time
-		var query = {
-			times: { $in: [now.time]},
-			days: { $in: [now.day] }
-		};
-	  Schedule.find(query, function (err, schedules) {
-	    if(err) { throw err; };
-	    console.log('Schedules: ', schedules);
-	    sendCheckins(schedules);
-	  });
+		checkinsMatchingNow(sendCheckins);
 	}, null, true, 'America/Los_Angeles');
 };
 
