@@ -4,25 +4,8 @@
   <h2>Schedules</h2>
   <table style="padding: 10px;">
     <tbody>
-      <tr>
-        <td>Name:</td>
-        <td>Shawn's Mom</td>
-        <td><a href="#" class="btn btn-primary btn-sm">Edit</a></td>
-      </tr>
-      <tr style="cell-padding: 10px;">
-        <td>Name:</td>
-        <td>Walker's Mom</td>
-        <td><a href="#" class="btn btn-primary btn-sm">Edit</a></td>
-      </tr>
-      <tr style="cell-padding: 10px;">
-        <td>Name:</td>
-        <td>Andrew's Grandma</td>
-        <td><a href="#" class="btn btn-primary btn-sm">Edit</a></td>
-      </tr>
-      <tr style="cell-padding: 10px;">
-        <td>Name:</td>
-        <td>Andrew's Fish</td>
-        <td><a href="#" class="btn btn-primary btn-sm">Edit</a></td>
+      <tr ng-repeat='schedule in mySchedules'>
+        <td>{{schedule.times}}</td>
       </tr>
     </tbody>
   </table>
