@@ -73,7 +73,7 @@ angular.module('doingFineApp')
       if(form.$valid){
         $scope.submitted = true;
         // Setup.schedule.
-        Setup.schedule.times = [$scope.schedule.times.getHours() + ":" + $scope.schedule.times.getMinutes()];
+        Setup.schedule.times = [$scope.schedule.times.getHours() + ':' + $scope.schedule.times.getMinutes()];
         console.log($scope.schedule);
 
         Setup.submit($scope.schedule);
