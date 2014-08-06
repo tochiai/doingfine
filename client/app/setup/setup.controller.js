@@ -15,7 +15,7 @@ angular.module('doingFineApp')
       if(form.$valid) {
         //persist form data in Setup factory
         Setup.schedule = $scope.schedule;
-        Setup.schedule.publisherPhone = "+1" + $scope.schedule.publisherPhone;
+        Setup.schedule.publisherPhone = '+1' + $scope.schedule.publisherPhone;
 
         console.log('Publisher Name and Phone Submitted!');
 

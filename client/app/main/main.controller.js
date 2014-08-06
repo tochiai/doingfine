@@ -1,10 +1,13 @@
 'use strict';
 
 angular.module('doingFineApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function () {
 
     // THIS IS KEPT FOR REFERENCE ON HOW TO IMPLEMENT SOCKET.IO FUNCTIONALITY IN
     // THE CONTROLLER
+
+    //Make sure to inject $scope, $http, and socket into the controller
+
 
     // $http.get('/api/things').success(function(awesomeThings) {
     //   $scope.awesomeThings = awesomeThings;
