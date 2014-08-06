@@ -6,7 +6,6 @@ angular.module('doingFineApp')
       $scope.userID = result._id;
       $http.get('api/users/' + $scope.userID + '/schedules')
         .success(function(data){
-          console.log('returned ', data);
           $scope.mySchedules = data;
         });
     });
