@@ -8,7 +8,7 @@ moment().format();
 // get Day as 0-6 and Time as '13:15' for Now (used to search schedules, then send checkins)
 var getDayTime = module.exports.getDayTime = function() {
   var date = {};
-  var now = moment();
+  var now = moment().utc().zone('-07:00');
   var hour = now.hour().toString();
   if (hour.length === 1) {
     hour = '0' + hour;
@@ -47,6 +47,8 @@ module.exports.start = function() {
   var CronJob = cron.CronJob;
   // run every minute
   new CronJob('00 */1 * * * *', function(){
+    // reveal server timezone
+    console.log(moment.utc().zone('-07:00').format());
     checkinsMatchingNow(sendCheckins);
   }, null, true, 'America/Los_Angeles');
 };
