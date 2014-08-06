@@ -13,13 +13,13 @@ exports.checkin = function(req, res, callback) {
 
   if (!callback) {
     callback = function() {};
-  };
+  }
 
   var senderPhone = req.query.From;
 
   Schedule.find({publisherPhone: senderPhone}, function(err, schedules) {
     _.forEach(schedules, function(schedule) {
-      dfTwilio.sendText(schedule.subscriberPhone, schedule.publisherName + ' just check in and is doing fine. From DoingFineApp.com.');
+      dfTwilio.sendText(schedule.subscriberPhone, schedule.publisherName + ' just checked in and is doing fine. From DoingFineApp.com.');
     });
     callback();
   });
@@ -44,7 +44,7 @@ exports.respond = function(req, res) {
 
 function handleError(res, err) {
   return res.send(500, err);
-};
+}
 
 
 /* Available from Twilio via request.query:
