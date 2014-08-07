@@ -18,10 +18,10 @@
           <tr ng-repeat='schedule in mySchedules'>
             <td>{{ schedule.publisherName }}</td>
             <td>{{ schedule.publisherPhone | tel }}</td>
-            <td><span ng-repeat="day in schedule.days">{{ day }}{{ $last ? '' : ', ' }}</span></td>
+            <td><span ng-repeat="day in schedule.days">{{ formatDay(day) }}{{ $last ? '' : ', ' }}</span></td>
             <td><span ng-repeat="time in schedule.times">{{ time }}{{ $last ? '' : ', ' }}</span></td>
             <td>{{ schedule.comm }}</td>
-            <td><button class="btn btn-sm btn-primary">Edit</button></td>
+            <td><button class="btn btn-sm btn-primary" ng-click="edit(schedule)">Edit</button></td>
             <td><button class="btn btn-sm btn-danger">Delete</button></td>
           </tr>
         </tbody>
