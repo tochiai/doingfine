@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 var ScheduleSchema = new Schema({
   days: [Number],
   times: [String],
+  publisherCheckin: String,
   publisherPhone: String,
   publisherName: String,
   subscriberPhone: String,
@@ -36,6 +37,12 @@ ScheduleSchema.path('subscriberPhone')
 ScheduleSchema.path('subscriberPhone')
   .validate(function(phone){
     return phone[1] === '1'
+  }, 'First number in phone number should be 1');
+
+ScheduleSchema.path('publisherCheckin')
+  .validate(function(checkin){
+    console.log(checkin)
+    //return phone[1] === '1'
   }, 'First number in phone number should be 1');
 
 module.exports = mongoose.model('Schedule', ScheduleSchema);
