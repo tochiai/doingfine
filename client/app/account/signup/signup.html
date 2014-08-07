@@ -79,13 +79,23 @@
           </p>
         </div>
 
+        <div class="form-group" ng-class="{ 'has-success': form.passwordMatch.$valid && submitted,
+                                            'has-error': form.passwordMatch.$invalid && submitted }">
+          <label>Confirm Password</label>
+
+          <input type="password" name="passwordMatch" class="form-control" ng-model="user.passwordMatch"
+                 required
+                 match="user.password"/>
+          <p class="help-block"
+             ng-show="(form.passwordMatch.$error.match || form.passwordMatch.$error.required) && submitted">
+            Passwords must match.
+          </p>
+        </div>
+
         <div>
           <button class="btn btn-inverse btn-lg btn-login" type="submit">
-            Sign up
+            Next
           </button>
-          <a class="btn btn-default btn-lg btn-register" href="/login">
-            Login
-          </a>
         </div>
 
         <hr>
