@@ -44,3 +44,7 @@ See the projects backlog in asana [here](https://LINKTOYOURASANA.com)
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for release history details.
