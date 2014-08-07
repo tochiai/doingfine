@@ -41,7 +41,6 @@ ScheduleSchema.path('subscriberPhone')
 
 ScheduleSchema.path('publisherCheckin')
   .validate(function(checkin){
-    console.log(checkin)
     //return phone[1] === '1'
   }, 'First number in phone number should be 1');
 

@@ -22,8 +22,8 @@ User.find({}).remove(function() {
     email: 'admin@admin.com',
     password: 'admin'
   }, function(err, testUser) {
-      seedSchedules(testUser)
       console.log('finished populating users');
+      seedSchedules(testUser);
     }
   );
 });
