@@ -19,6 +19,14 @@
         ><label>{{ day.name }}</label>
       </li>
     </ul>
+    <div class="input-group">
+      <select ng-model='schedule.subscriberComm'>
+        <option value=''>--Select:--</option>
+        <option>Email</option>
+        <option>SMS</option>
+      </select>
+    </div>
+    <p></p>
     <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp; Submit</button>
   </form>
 </div>

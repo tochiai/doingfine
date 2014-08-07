@@ -9,6 +9,7 @@ var ScheduleSchema = new Schema({
   publisherCheckin: String,
   publisherPhone: String,
   publisherName: String,
+  subscriberComm: String,
   subscriberPhone: String,
   subscriberName: String,
   subscriberID: String
@@ -43,6 +44,12 @@ ScheduleSchema.path('publisherCheckin')
   .validate(function(checkin){
     console.log(checkin)
     //return phone[1] === '1'
-  }, 'First number in phone number should be 1');
+  }, 'This is the way publisher wants to checkin');
+
+ScheduleSchema.path('subscriberComm')
+  .validate(function(comm){
+    console.log(comm)
+    //return phone[1] === '1'
+  }, 'This is the way the subscriber wants to be updated');
 
 module.exports = mongoose.model('Schedule', ScheduleSchema);
