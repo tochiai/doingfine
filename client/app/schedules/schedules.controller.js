@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('doingFineApp')
-  .controller('SchedulesCtrl', function ($scope, $state, $http, User) {
+  .controller('SchedulesCtrl', function ($scope, $rootScope, $state, $http, User) {
 
     $scope.formatDay = function(day) {
       var daysLong = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -11,7 +11,8 @@ angular.module('doingFineApp')
 
     $scope.edit = function(schedule){
       console.log(schedule);
-      $state.go('edit-schedule', {schedule: 'test'});
+      $rootScope.editSchedule = schedule;
+      $state.go('edit-schedule');
     };
 
     User.get(function(result){
