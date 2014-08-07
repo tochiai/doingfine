@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('doingFineApp')
-  .controller('CreatePublisherCtrl', function ($scope, $location, CreatePublisher, User) {
+  .controller('PublisherCreateCtrl', function ($scope, $location, Schedule, User) {
     //namespaced variable for models defined in template
     //will have schedule.name and schedule.phone
     $scope.schedule = {};
@@ -13,10 +13,10 @@ angular.module('doingFineApp')
 
     $scope.submit = function(form){
       if(form.$valid) {
-        //persist form data in CreatePublisher factory
-        CreatePublisher.schedule = $scope.schedule;
-        CreatePublisher.schedule.publisherPhone = '+1' + $scope.schedule.publisherPhone;
-        console.log(CreatePublisher.schedule);
+        //persist form data in Schedule factory
+        Schedule.schedule = $scope.schedule;
+        Schedule.schedule.publisherPhone = '+1' + $scope.schedule.publisherPhone;
+        console.log(Schedule.schedule);
         console.log('Publisher Name and Phone Submitted!');
 
         $location.path('/schedule');
