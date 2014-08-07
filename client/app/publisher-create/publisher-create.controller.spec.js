@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: CreatePublisherCtrl', function () {
+describe('Controller: PublisherCreateCtrl', function () {
 
   // load the controller's module
   beforeEach(module('doingFineApp'));
 
-  var CreatePublisherCtrl, scope;
+  var PublisherCreateCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    CreatePublisherCtrl = $controller('CreatePublisherCtrl', {
+    PublisherCreateCtrl = $controller('PublisherCreateCtrl', {
       $scope: scope
     });
   }));
