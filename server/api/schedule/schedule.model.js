@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var ScheduleSchema = new Schema({
   days: [Number],
   times: [String],
-  publisherCheckin: String,
+  publisherCheckin: String, //expect 'SMS' or 'Phone'
   publisherPhone: String,
   publisherName: String,
   subscriberPhone: String,
