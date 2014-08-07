@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('doingFineApp')
-  .factory('Setup', function ($http) {
+  .factory('CreatePublisher', function ($http) {
     var schedule = {};
     var submit = function(schedule){
       //submit post request to server
