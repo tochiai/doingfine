@@ -16,6 +16,16 @@
              ui-mask="(999) 999-9999" placeholder="(___) ___-____"/>
     </div>
 
+    <h2>How do they want to check-in?</h2>
+
+    <div class="input-group">
+      <select ng-model='schedule.publisherCheckin'>
+        <option value=''>--Select:--</option>
+        <option>Phone</option>
+        <option>SMS</option>
+      </select>
+    </div>
+    <p></p>
     <button type="submit" class="btn btn-primary">Next</button>
   </form>
 </div>

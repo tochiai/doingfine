@@ -17,7 +17,7 @@ angular.module('doingFineApp')
         })
         .then( function() {
           // Account created, redirect to home
-          $location.path('/setup');
+          $location.path('/createPublisher');
         })
         .catch( function(err) {
           err = err.data;
