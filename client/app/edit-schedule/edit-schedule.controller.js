@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('doingFineApp')
-  .controller('EditScheduleCtrl', function ($scope, $rootScope, $state) {
+  .controller('EditScheduleCtrl', function ($scope, $rootScope, $state, Setup) {
 
     if (!$rootScope.editSchedule) {
       $state.go('schedules');
@@ -60,8 +60,6 @@ angular.module('doingFineApp')
         {name: 'Sunday', value: 0}
       ];
 
-      $scope.schedule.days = [];
-
       // toggle selection for a given day by name
       $scope.toggleDay = function toggleDays(day) {
         var idx = $scope.schedule.days.indexOf(day);
@@ -74,6 +72,20 @@ angular.module('doingFineApp')
         // is newly selected
         else {
           $scope.schedule.days.push(day.value);
+        }
+      };
+
+      //submit form
+      $scope.submit = function(form) {
+        if (form.$valid) {
+          //format telephone into +12223334444
+          $scope.schedule.publisherPhone = '+1' + $scope.schedule.publisherPhone;
+
+          //Submit AJAX put request to update schedule
+          Setup.update($scope.schedule)
+          .then(function(){
+            $state.go('schedules');
+          });
         }
       };
     }
