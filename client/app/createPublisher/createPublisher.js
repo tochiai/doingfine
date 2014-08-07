@@ -3,10 +3,10 @@
 angular.module('doingFineApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('createPublisher', {
-        url: '/createPublisher',
-        templateUrl: 'app/createPublisher/createPublisher.html',
-        controller: 'CreatePublisherCtrl',
+      .state('Schedule', {
+        url: '/Schedule',
+        templateUrl: 'app/Schedule/Schedule.html',
+        controller: 'ScheduleCtrl',
         authenticate: true
       });
   });

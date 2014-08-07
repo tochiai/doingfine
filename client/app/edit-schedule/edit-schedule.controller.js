@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('doingFineApp')
-  .controller('EditScheduleCtrl', function ($scope, $rootScope, $state, Setup) {
+  .controller('EditScheduleCtrl', function ($scope, $rootScope, $state, Schedule) {
 
     if (!$rootScope.editSchedule) {
       $state.go('schedules');
@@ -82,7 +82,7 @@ angular.module('doingFineApp')
           $scope.schedule.publisherPhone = '+1' + $scope.schedule.publisherPhone;
 
           //Submit AJAX put request to update schedule
-          Setup.update($scope.schedule)
+          Schedule.update($scope.schedule)
           .then(function(){
             $state.go('schedules');
           });

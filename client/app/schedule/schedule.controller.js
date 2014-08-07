@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('doingFineApp')
-  .controller('ScheduleCtrl', function ($scope, CreatePublisher) {
-    //verify that data from '/setup' state persists through CreatePublisher factory
-    console.log(CreatePublisher.schedule);
+  .controller('ScheduleCtrl', function ($scope, Schedule) {
+    //verify that data from '/publisher-create' state persists through Schedule factory
+    console.log(Schedule.schedule);
 
-    $scope.schedule = CreatePublisher.schedule;
+    $scope.schedule = Schedule.schedule;
 
     //TIME PICKER
 
@@ -75,10 +75,10 @@ angular.module('doingFineApp')
         var minutes = ($scope.schedule.times.getMinutes() < 10 ? '0' : '') + $scope.schedule.times.getMinutes();
 
 
-        CreatePublisher.schedule.times = [$scope.schedule.times.getHours() + ':' + minutes];
+        Schedule.schedule.times = [$scope.schedule.times.getHours() + ':' + minutes];
         console.log($scope.schedule);
 
-        CreatePublisher.submit($scope.schedule);
+        Schedule.submit($scope.schedule);
         //Do AJAX request that sends object in the following format (coming from schedule Schema):
         //{
         //   days: [Number], //0 = Sunday, 1 = Monday, etc...
@@ -90,7 +90,7 @@ angular.module('doingFineApp')
         //   subscriberID: String
         // }
 
-        // console.log(CreatePublisher.schedule);
+        // console.log(Schedule.schedule);
 
 
       }
