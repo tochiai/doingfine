@@ -46,7 +46,7 @@ ScheduleSchema.path('publisherCheckin')
     //return phone[1] === '1'
   }, 'This is the way publisher wants to checkin');
 
-ScheduleSchema.path('subscriberComm')
+ScheduleSchema.path('subscriberCommType')
   .validate(function(comm){
     console.log(comm)
     //return phone[1] === '1'
