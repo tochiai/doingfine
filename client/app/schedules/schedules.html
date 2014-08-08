@@ -22,7 +22,7 @@
             <td><span ng-repeat="time in schedule.times">{{ time }}{{ $last ? '' : ', ' }}</span></td>
             <td>{{ schedule.comm }}</td>
             <td><button class="btn btn-sm btn-primary" ng-click="edit(schedule)">Edit</button></td>
-            <td><button class="btn btn-sm btn-danger">Delete</button></td>
+            <td><button class="btn btn-sm btn-danger" ng-click="destroy(schedule)">Delete</button></td>
           </tr>
         </tbody>
       </table>
