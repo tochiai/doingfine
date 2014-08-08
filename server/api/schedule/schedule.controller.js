@@ -45,6 +45,8 @@ exports.update = function(req, res) {
   Schedule.findById(req.params.id, function (err, schedule) {
     if (err) { return handleError(res, err); }
     if(!schedule) { return res.send(404); }
+    schedule.days = req.body.days; // _.merge will not overwrite arrays
+    schedule.times = req.body.times; // ditto
     var updated = _.merge(schedule, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
