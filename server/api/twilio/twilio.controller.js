@@ -47,13 +47,12 @@ exports.callPost = function(req, res) {
   console.log('post /twiml')
   // form a twiML response (xml) like so:
   var twiml = new twilio.TwimlResponse();
-  twiml.say('Hello. Please leave a message after the beep.', {
+  twiml.say('Hello. If something is wrong, press the pound key. Otherwise, press 1.', {
     voice:'alice',
     language:'en-gb'
   });
-  twiml.record( {
-    playBeep: 'true',
-    transcribeCallback: '/api/twilio'
+  twiml.gather( {
+    action: '/api/twilio'
   });
   res.set('Content-Type', 'text/xml');
   return res.send(200, twiml.toString());
@@ -63,7 +62,7 @@ function handleError(res, err) {
   return res.send(500, err);
 }
 
-exports.transcribe = function(req, res) {
+exports.recordKeyPress = function(req, res) {
   console.log(req.body);
   res.send(200);
 };
