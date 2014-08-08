@@ -10,16 +10,11 @@
           <input type="text" class="form-control" required placeholder="Name" ng-model="schedule.publisherName">
         </div>
 
-        <!-- TODO: validate phone number -->
         <div class="input-group">
           <label>Phone:</label>
           <input type="tel" name="tel" class="form-control" ng-model="schedule.publisherPhone"
                  required
                  ui-mask="(999) 999-9999" placeholder="(___) ___-____"/>
-        </div>
-
-        <div>
-          <timepicker ng-model="schedule.times" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
         </div>
 
         <ul style="list-style: none;">
@@ -33,6 +28,12 @@
             ><label>{{ day.name }}</label>
           </li>
         </ul>
+
+        <div>
+          <timepicker ng-model="schedule.times" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+        </div>
+
+        
 
         <button type="submit" class="btn btn-primary">Save</button>
       </form>

@@ -14,7 +14,60 @@ angular.module('doingFineApp')
       //PHONE FORMATTING
       $scope.schedule.publisherPhone = $scope.schedule.publisherPhone.slice(2);
 
+      
+      //DAY PICKER
+
+      $scope.days = [
+        {name: 'Monday', value: 1},
+        {name: 'Tuesday', value: 2},
+        {name: 'Wednesday', value: 3},
+        {name: 'Thursday', value: 4},
+        {name: 'Friday', value: 5},
+        {name: 'Saturday', value: 6},
+        {name: 'Sunday', value: 0}
+      ];
+
+      // toggle selection for a given day by name
+      $scope.toggleDay = function toggleDays(day) {
+        var idx = $scope.schedule.days.indexOf(day.value);
+
+        // is currently selected
+        if (idx > -1) {
+          $scope.schedule.days.splice(idx, 1);
+        }
+
+        // is newly selected
+        else {
+          $scope.schedule.days.push(day.value);
+        }
+      };
+
+      //submit form
+      $scope.submit = function(form) {
+        if (form.$valid) {
+          //create variable to hold schedule in the format that API expects
+          var submissionSchedule = _.clone($scope.schedule);
+
+          //sort days array
+          submissionSchedule.days.sort();
+
+
+          //format telephone into +12223334444
+          submissionSchedule.publisherPhone = '+1' + submissionSchedule.publisherPhone;
+
+          console.log(submissionSchedule.days);
+
+          //Submit AJAX put request to update schedule
+          Schedule.update(submissionSchedule)
+          .then(function(){
+            $state.go('schedules');
+          });
+        }
+      };
+
+
       //TIME PICKER
+
       var time = $scope.schedule.times[0].split(':');
       var hours = parseInt(time[0]);
       var minutes = parseInt(time[1]);
@@ -48,45 +101,5 @@ angular.module('doingFineApp')
         $scope.schedule.times = null;
       };
 
-      //DAY PICKER
-
-      $scope.days = [
-        {name: 'Monday', value: 1},
-        {name: 'Tuesday', value: 2},
-        {name: 'Wednesday', value: 3},
-        {name: 'Thursday', value: 4},
-        {name: 'Friday', value: 5},
-        {name: 'Saturday', value: 6},
-        {name: 'Sunday', value: 0}
-      ];
-
-      // toggle selection for a given day by name
-      $scope.toggleDay = function toggleDays(day) {
-        var idx = $scope.schedule.days.indexOf(day);
-
-        // is currently selected
-        if (idx > -1) {
-          $scope.schedule.days.splice(idx, 1);
-        }
-
-        // is newly selected
-        else {
-          $scope.schedule.days.push(day.value);
-        }
-      };
-
-      //submit form
-      $scope.submit = function(form) {
-        if (form.$valid) {
-          //format telephone into +12223334444
-          $scope.schedule.publisherPhone = '+1' + $scope.schedule.publisherPhone;
-
-          //Submit AJAX put request to update schedule
-          Schedule.update($scope.schedule)
-          .then(function(){
-            $state.go('schedules');
-          });
-        }
-      };
     }
   });
