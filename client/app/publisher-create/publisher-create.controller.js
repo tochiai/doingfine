@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('doingFineApp')
+<<<<<<< HEAD:client/app/createPublisher/createPublisher.controller.js
   .controller('ScheduleCtrl', function ($scope, $location, Schedule, User) {
+=======
+  .controller('PublisherCreateCtrl', function ($scope, $location, Schedule, User) {
+>>>>>>> 216417f6775ea19ce7f672cf3cf23038648bd30c:client/app/publisher-create/publisher-create.controller.js
     //namespaced variable for models defined in template
     //will have schedule.name and schedule.phone
     $scope.schedule = {};
@@ -19,7 +23,7 @@ angular.module('doingFineApp')
         console.log(Schedule.schedule);
         console.log('Publisher Name and Phone Submitted!');
 
-        $location.path('/schedule');
+        $location.path('/schedule-create');
       }
     };
   });
