@@ -1,7 +1,6 @@
 //require the Twilio module and create a REST client
 var ACCOUNT_SID = 'ACcc6bd88977d0eddd1ff935ecbc2cacee';
 var AUTH_TOKEN = 'c9ba89f331e84936155f1916a5bca2fb';
-var from = process.env.NODE_ENV === 'production' ? '+18052904005' : '+18025324118';
 
 // twilio has amazing docs for node
 // see: http://twilio.github.io/twilio-node/
@@ -29,6 +28,22 @@ module.exports.sendText = function(phone, msg) {
           console.log(responseData.body); // outputs "word to your mother."
 
       }
+
+  });
+};
+module.exports.call = function(phone){
+  //Place a phone call, and respond with TwiML instructions from the given URL
+  client.makeCall({
+    to: phone, // Any number Twilio can call
+    from: fromPhone, // A number you bought from Twilio and can use for outbound communication
+    url: 'https://doingfine.localtunnel.me/api/twilio/call' // A URL that produces an XML document (TwiML) which contains instructions for the call
+
+    }, function(err, responseData) {
+      if(err){
+        console.log(err);
+      }
+      //executed when the call has been initiated.
+      console.log('call successful from: ', responseData.phone); // log caller phone
 
   });
 };
