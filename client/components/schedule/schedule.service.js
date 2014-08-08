@@ -40,10 +40,21 @@ angular.module('doingFineApp')
           console.log('Error', data);
         });
     };
+    var destroy = function(schedule) {
+      return $http.delete('/api/schedules/' + schedule._id)
+        .success(function() {
+          console.log('Successfully removed schedule');
+        })
+        .error(function(data) {
+          console.log('Error', data);
+        });
+    };
 
     return {
       schedule: schedule,
       submit: submit,
-      update: update
+      update: update,
+      destroy: destroy
     };
+
   });
