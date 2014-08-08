@@ -18,18 +18,16 @@ angular.module('doingFineApp')
         });
     };
     var update = function(schedule) {
-      console.log(schedule.times);
+      // console.log(schedule.times);
       //format time into 24:00 format
       var hours = schedule.times.getHours();
       var minutes = (schedule.times.getMinutes() < 10 ? '0' : '') + schedule.times.getMinutes();
       schedule.times = [ hours + ':' + minutes];
-      console.log(schedule.times);
+      // console.log(schedule.times);
 
       //submit post request to server
       return $http.put('/api/schedules/' + schedule._id, schedule)
         .success(function(data) {
-          // this callback will be called asynchronously
-          // when the response is available
 
           console.log('Successfully updated schedule', data);
 
