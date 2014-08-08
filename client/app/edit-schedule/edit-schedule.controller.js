@@ -14,7 +14,7 @@ angular.module('doingFineApp')
       //PHONE FORMATTING
       $scope.schedule.publisherPhone = $scope.schedule.publisherPhone.slice(2);
 
-      
+
       //DAY PICKER
 
       $scope.days = [
@@ -54,8 +54,6 @@ angular.module('doingFineApp')
 
           //format telephone into +12223334444
           submissionSchedule.publisherPhone = '+1' + submissionSchedule.publisherPhone;
-
-          console.log(submissionSchedule.days);
 
           //Submit AJAX put request to update schedule
           Schedule.update(submissionSchedule)

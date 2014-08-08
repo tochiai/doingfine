@@ -10,7 +10,6 @@ angular.module('doingFineApp')
     };
 
     $scope.edit = function(schedule){
-      console.log(schedule);
       $rootScope.editSchedule = schedule;
       $state.go('edit-schedule');
     };
