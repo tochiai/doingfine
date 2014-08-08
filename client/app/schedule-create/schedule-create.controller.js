@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('doingFineApp')
-  .controller('ScheduleCtrl', function ($scope, Schedule) {
-    //verify that data from '/setup' state persists through Schedule factory
+
+  .controller('ScheduleCreateCtrl', function ($scope, Schedule) {
+    //verify that data from '/publisher-create' state persists through Schedule factory
     console.log(Schedule.schedule);
 
     $scope.schedule = Schedule.schedule;

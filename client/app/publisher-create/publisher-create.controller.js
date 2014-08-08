@@ -19,7 +19,7 @@ angular.module('doingFineApp')
         console.log(Schedule.schedule);
         console.log('Publisher Name and Phone Submitted!');
 
-        $location.path('/schedule');
+        $location.path('/schedule-create');
       }
     };
   });
