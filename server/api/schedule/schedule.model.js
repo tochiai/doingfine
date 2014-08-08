@@ -9,10 +9,10 @@ var ScheduleSchema = new Schema({
   publisherCheckin: String,
   publisherPhone: String,
   publisherName: String,
-  subscriberComm: String,
+  subscriberCommunicationType: String,
   subscriberPhone: String,
   subscriberName: String,
-  subscriberID: String
+  subscriberID: String //this is the userID from User model
 });
 
 ScheduleSchema.path('days')
@@ -46,7 +46,7 @@ ScheduleSchema.path('publisherCheckin')
     //return phone[1] === '1'
   }, 'This is the way publisher wants to checkin');
 
-ScheduleSchema.path('subscriberCommType')
+ScheduleSchema.path('subscriberCommunicationType')
   .validate(function(comm){
     console.log(comm)
     //return phone[1] === '1'
