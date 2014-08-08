@@ -4,6 +4,8 @@ var Schedule = require('../schedule/schedule.model');
 var twilio = require('twilio');
 var dfTwilio = require('../../components/df.twilio/df.twilio.js');
 var _ = require('lodash');
+var User = require('../user/user.model');
+var nodemailer = require('nodemailer');
 
 // When twilio receives an SMS addressed to the registered DoingFine phone number, it makes a GET request to /api/twilio
 // twilio can receive an twiML (xml) response with instructions (ie an SMS resonse message or phone call script)
@@ -15,11 +17,55 @@ exports.checkin = function(req, res, callback) {
     callback = function() {};
   }
 
+  // var senderPhone = req.query.From;
+  // console.log('transporter malfunction');
+  // var transporter = nodemailer.createTransport({
+  //   service: 'Gmail',
+  //   auth: {
+  //       user: 'walkermellema@gmail.com',
+  //       pass: '41tniop3'
+  //   }
+  // });
+
+  // var mailOptions = {
+  //   from: 'DoingFine <updates@doingfine.com>', // sender address
+  //   to: 'bradme3@gmail.com',//, baz@blurdybloop.com', // list of receivers
+  //   subject: 'Publisher Check-in', // Subject line
+  //   text: 'I am OK', // plaintext body
+  //   html: '<b>You are OK</b>' // html body
+  // };
+
+  // transporter.sendMail(mailOptions, function(error, info){
+  //   if(error){
+  //       console.log(error);
+  //   }else{
+  //       console.log('Message sent: ' + info.response);
+  //   }
+  // });
+
   var senderPhone = req.query.From;
 
   Schedule.find({publisherPhone: senderPhone}, function(err, schedules) {
     _.forEach(schedules, function(schedule) {
-      dfTwilio.sendText(schedule.subscriberPhone, schedule.publisherName + ' just checked in and is doing fine. From DoingFineApp.com.');
+      if(schedule.subscriberCommunicationType === 'SMS'){
+        dfTwilio.sendText(schedule.subscriberPhone, schedule.publisherName + ' just checked in and is doing fine. From DoingFineApp.com.');
+      }
+      else if(schedule.subscriberCommunicationType === 'Email'){
+        //get subscriber email from user.model 
+        if(typeof schedule.subscriberEmail === 'undefined'){
+          User.findById(schedule.subscriberID, function (err, user) {
+            if (err) console.log(err);
+            if (!user){
+              console.log("user not found");
+            }
+            else{
+              schedule.subscriberEmail = user.email;
+            }
+          });
+        }
+        //send email to subscriber
+        
+      }
     });
     callback();
   });
