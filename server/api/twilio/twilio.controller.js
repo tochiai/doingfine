@@ -17,31 +17,31 @@ exports.checkin = function(req, res, callback) {
     callback = function() {};
   }
 
-  // var senderPhone = req.query.From;
-  // console.log('transporter malfunction');
-  // var transporter = nodemailer.createTransport({
-  //   service: 'Gmail',
-  //   auth: {
-  //       user: 'walkermellema@gmail.com',
-  //       pass: '41tniop3'
-  //   }
-  // });
+  var senderPhone = req.query.From;
+  console.log('transporter malfunction');
+  var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'walkermellema@gmail.com',
+        pass: '41tniop3'
+    }
+  });
 
-  // var mailOptions = {
-  //   from: 'DoingFine <updates@doingfine.com>', // sender address
-  //   to: 'bradme3@gmail.com',//, baz@blurdybloop.com', // list of receivers
-  //   subject: 'Publisher Check-in', // Subject line
-  //   text: 'I am OK', // plaintext body
-  //   html: '<b>You are OK</b>' // html body
-  // };
+  var mailOptions = {
+    from: 'DoingFine <updates@doingfine.com>', // sender address
+    to: 'bradme3@gmail.com',//, baz@blurdybloop.com', // list of receivers
+    subject: 'Publisher Check-in', // Subject line
+    text: 'I am OK', // plaintext body
+    html: '<b>You are OK</b>' // html body
+  };
 
-  // transporter.sendMail(mailOptions, function(error, info){
-  //   if(error){
-  //       console.log(error);
-  //   }else{
-  //       console.log('Message sent: ' + info.response);
-  //   }
-  // });
+  transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        console.log(error);
+    }else{
+        console.log('Message sent: ' + info.response);
+    }
+  });
 
   var senderPhone = req.query.From;
 
