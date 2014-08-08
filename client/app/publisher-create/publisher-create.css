@@ -1,0 +1,9 @@
+.center {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  margin-top: -150px;
+  margin-left: -150px;
+  width: 500px;
+  height: 420px;
+}

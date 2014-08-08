@@ -1,31 +1,31 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div class="col-md-12">
-  <h2>Who are you scheduling?</h2>
-  <form name="who" ng-submit="submit(who)">
+  <div class="col-md-12 well center">
+    <h2>Who are you scheduling?</h2>
+    <form name="who" ng-submit="submit(who)">
 
-    <div class="input-group">
-      <label>Name:</label>
-      <input type="text" class="form-control" required placeholder="Name" ng-model="schedule.publisherName">
-    </div>
+      <div class="input-group">
+        <label>Name:</label>
+        <input type="text" class="form-control" required placeholder="Name" ng-model="schedule.publisherName">
+      </div>
 
-    <!-- TODO: validate phone number -->
-    <div class="input-group">
-      <label>Phone:</label>
-      <input type="tel" name="tel" class="form-control" ng-model="schedule.publisherPhone"
-             required
-             ui-mask="(999) 999-9999" placeholder="(___) ___-____"/>
-    </div>
+      <!-- TODO: validate phone number -->
+      <div class="input-group">
+        <label>Phone:</label>
+        <input type="tel" name="tel" class="form-control" ng-model="schedule.publisherPhone"
+               required
+               ui-mask="(999) 999-9999" placeholder="(___) ___-____"/>
+      </div>
 
-    <h2>How do they want to check-in?</h2>
+      <h2>How do they want to check-in?</h2>
 
-    <div class="input-group">
-      <select ng-model='schedule.publisherCheckin'>
-        <option value=''>--Select:--</option>
-        <option>Phone</option>
-        <option>SMS</option>
-      </select>
-    </div>
-    <p></p>
-    <button type="submit" class="btn btn-primary">Next</button>
-  </form>
+      <div class="input-group">
+        <select ng-model='schedule.publisherCheckin'>
+          <option value=''>--Select:--</option>
+          <option>Phone</option>
+          <option>SMS</option>
+        </select>
+      </div>
+      <p></p>
+      <button type="submit" class="btn btn-primary">Next</button>
+    </form>
 </div>
