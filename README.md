@@ -25,6 +25,11 @@
 
 ## Development
 
+### Twilio Environment Variable
+The environment variable `PHONE_NUMBER` must be set to
+develop using the Twilio API. Do this in the `~/.bashrc`
+file or the equivalent on your system.
+
 ### Installing Dependencies
 
 From within the root directory:

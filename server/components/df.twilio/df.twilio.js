@@ -5,7 +5,7 @@ var AUTH_TOKEN = 'c9ba89f331e84936155f1916a5bca2fb';
 // twilio has amazing docs for node
 // see: http://twilio.github.io/twilio-node/
 var client = require('twilio')(ACCOUNT_SID, AUTH_TOKEN);
-var fromPhone = process.env.NODE_ENV === 'production' ? '+18052904005' : '+18025324118';
+var fromPhone = process.env.NODE_ENV === 'production' ? '+18052904005' : process.env.PHONE_NUMBER;
 
 
 module.exports.sendText = function(phone, msg) {
@@ -43,7 +43,7 @@ module.exports.call = function(phone){
         console.log(err);
       }
       //executed when the call has been initiated.
-      console.log('call successful from: ', responseData.phone); // log caller phone
+      console.log('call successful from: ', responseData.from); // log caller phone
 
   });
 };
