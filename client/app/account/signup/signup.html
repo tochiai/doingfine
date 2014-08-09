@@ -2,10 +2,10 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
       <h1>Sign up</h1>
-    </div>
-    <div class="col-sm-12">
+
       <form class="form" name="form" ng-submit="register(form)" novalidate>
 
         <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
@@ -39,10 +39,6 @@
             {{ errors.phone }}
           </p>
         </div>
-
-
-
-
 
         <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
                                             'has-error': form.email.$invalid && submitted }">
@@ -93,12 +89,11 @@
         </div>
 
         <div>
-          <button class="btn btn-inverse btn-lg btn-login" type="submit">
+          <button class="btn btn-primary btn-lg btn-login" type="submit">
             Next
           </button>
         </div>
 
-        <hr>
         <!-- <div>
           <a class="btn btn-facebook" href="" ng-click="loginOauth('facebook')">
             <i class="fa fa-facebook"></i> Connect with Facebook
@@ -112,6 +107,6 @@
         </div> -->
       </form>
     </div>
+    <div class="col-sm-3"></div>
   </div>
-  <hr>
 </div>
