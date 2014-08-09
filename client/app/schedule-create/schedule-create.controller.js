@@ -78,6 +78,7 @@ angular.module('doingFineApp')
 
         Schedule.schedule.times = [$scope.schedule.times.getHours() + ':' + minutes];
         console.log($scope.schedule);
+        console.log('#################')
 
         Schedule.submit($scope.schedule);
         //Do AJAX request that sends object in the following format (coming from schedule Schema):

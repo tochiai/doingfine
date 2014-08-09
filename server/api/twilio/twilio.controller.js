@@ -26,22 +26,19 @@ exports.checkin = function(req, res, callback) {
         pass: '41tniop3'
     }
   });
-
+  var toAddress = '';
+  var emailSubject = '';
+  var emailText = '';
+  var emailHTML = '';
   var mailOptions = {
     from: 'DoingFine <updates@doingfine.com>', // sender address
-    to: 'bradme3@gmail.com',//, baz@blurdybloop.com', // list of receivers
-    subject: 'Publisher Check-in', // Subject line
-    text: 'I am OK', // plaintext body
-    html: '<b>You are OK</b>' // html body
+    to: toAddress,//, baz@blurdybloop.com', // list of receivers
+    subject: emailSubject, // Subject line
+    text: emailText, // plaintext body
+    html: '<b>' + emailHTML + '</b>' // html body
   };
 
-  transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        console.log(error);
-    }else{
-        console.log('Message sent: ' + info.response);
-    }
-  });
+
 
   var senderPhone = req.query.From;
 
@@ -52,18 +49,36 @@ exports.checkin = function(req, res, callback) {
       }
       else if(schedule.subscriberCommunicationType === 'Email'){
         //get subscriber email from user.model 
+        var x = typeof schedule.subscriberEmail;
+        console.log(x + 'typeof');
         if(typeof schedule.subscriberEmail === 'undefined'){
+          console.log(schedule.subscriberID);
+          console.log(":::::::::::::::::::");
           User.findById(schedule.subscriberID, function (err, user) {
             if (err) console.log(err);
             if (!user){
               console.log("user not found");
             }
-            else{
+            //else{
+              console.log(user.email);
               schedule.subscriberEmail = user.email;
-            }
+            //}
           });
         }
         //send email to subscriber
+        toAddress = schedule.subscriberEmail;
+        emailSubject = schedule.publisherName + ' status update';
+        emailText = schedule.publisherName + ' has checked in via DoingFine.';
+        emailHTML = schedule.publisherName + ' has checked in via DoingFine.';
+        console.log(schedule.subscriberEmail + 'subscriber email');
+        transporter.sendMail(mailOptions, function(error, info){
+          if(error){
+              console.log(error + 'this is the sendMail error');
+          }
+          else{
+              console.log('Message sent: ' + info.response);
+          }
+  });
         
       }
     });

@@ -6,10 +6,11 @@ var mongoose = require('mongoose'),
 var ScheduleSchema = new Schema({
   days: [Number],
   times: [String],
-  publisherCheckin: String, //expect 'SMS' or 'Phone'
+  publisherCheckin: String,
   publisherPhone: String,
   publisherName: String,
   subscriberCommunicationType: String,
+  subscriberEmail: String,
   subscriberPhone: String,
   subscriberName: String,
   subscriberID: String //this is the userID from User model
@@ -42,6 +43,7 @@ ScheduleSchema.path('subscriberPhone')
 
 ScheduleSchema.path('publisherCheckin')
   .validate(function(checkin){
+    console.log(checkin)
     //return phone[1] === '1'
   }, 'This is the way publisher wants to checkin');
 
