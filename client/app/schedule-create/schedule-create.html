@@ -7,7 +7,6 @@
       <div class="well">
         <h2>Set Schedule</h2>
         <form name="scheduleForm" ng-submit="submit(scheduleForm)">
-
           <ul style="list-style: none;">
             <li ng-repeat="day in days">
               <label>
@@ -25,8 +24,15 @@
             <timepicker ng-model="schedule.times" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
           </div>
 
+          <h2>Select how you want to receive your updates.</h2>
+          <div class="input-group">
+            <select ng-model='schedule.subscriberCommunicationType' required class="form-control">
+              <option value="">Select:</option>
+              <option>Email</option>
+              <option>SMS</option>
+            </select>
+          </div>
           <br>
-
           <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp; Submit</button>
         </form>
       </div>
