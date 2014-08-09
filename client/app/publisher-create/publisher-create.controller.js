@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('doingFineApp')
-  .controller('PublisherCreateCtrl', function ($scope, $location, Schedule, User) {
+  .controller('PublisherCreateCtrl', function ($scope, $state, Schedule, User) {
     //namespaced variable for models defined in template
     //will have schedule.name and schedule.phone
     $scope.schedule = {};
@@ -16,10 +16,8 @@ angular.module('doingFineApp')
         //persist form data in Schedule factory
         Schedule.schedule = $scope.schedule;
         Schedule.schedule.publisherPhone = '+1' + $scope.schedule.publisherPhone;
-        console.log(Schedule.schedule);
         console.log('Publisher Name and Phone Submitted!');
-
-        $location.path('/schedule-create');
+        $state.go('schedule-create');
       }
     };
   });
