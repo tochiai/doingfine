@@ -23,14 +23,17 @@
           <h2>How do they want to check-in?</h2>
 
           <div class="input-group">
-            <select ng-model='schedule.publisherCheckin'>
-              <option value=''>--Select:--</option>
-              <option>Phone</option>
+            <select ng-model="schedule.publisherCheckin" class="form-control">
+              <option value="">Select:</option>
               <option>SMS</option>
+              <option>Phone</option>
             </select>
           </div>
-          <p></p>
+
+          <br>
+
           <button type="submit" class="btn btn-primary">Next</button>
+
         </form>
       </div>
     </div>

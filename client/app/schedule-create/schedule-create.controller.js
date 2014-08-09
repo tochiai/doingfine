@@ -48,7 +48,7 @@ angular.module('doingFineApp')
       {name: 'Sunday', value: 0}
     ];
 
-    $scope.schedule.days = [];
+    $scope.schedule.days = [0,1,2,3,4,5,6];
 
     // toggle selection for a given day by name
     $scope.toggleDay = function toggleDays(day) {

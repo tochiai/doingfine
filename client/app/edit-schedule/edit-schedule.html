@@ -18,22 +18,26 @@
                    required
                    ui-mask="(999) 999-9999" placeholder="(___) ___-____"/>
           </div>
+          <br>
 
           <ul style="list-style: none;">
             <li ng-repeat="day in days">
+              <label>
               <input
                 type="checkbox"
                 name="scheduleDays[]"
                 value="day.value"
                 ng-checked="schedule.days.indexOf(day.value) > -1"
                 ng-click="toggleDay(day)"
-              ><label>{{ day.name }}</label>
+              > {{ day.name }}</label>
             </li>
           </ul>
 
           <div>
             <timepicker ng-model="schedule.times" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
           </div>
+          
+          <br>
 
           <button type="submit" class="btn btn-primary">Save</button>
 
