@@ -1,42 +1,49 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <h2>Edit Schedule</h2>
-      <form name="scheduleForm" ng-submit="submit(scheduleForm)">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="well">
+        <h2>Edit Schedule</h2>
+        <form name="scheduleForm" ng-submit="submit(scheduleForm)">
 
-        <div class="input-group">
-          <label>Name:</label>
-          <input type="text" class="form-control" required placeholder="Name" ng-model="schedule.publisherName">
-        </div>
+          <div class="input-group">
+            <label>Name:</label>
+            <input type="text" class="form-control" required placeholder="Name" ng-model="schedule.publisherName">
+          </div>
 
-        <div class="input-group">
-          <label>Phone:</label>
-          <input type="tel" name="tel" class="form-control" ng-model="schedule.publisherPhone"
-                 required
-                 ui-mask="(999) 999-9999" placeholder="(___) ___-____"/>
-        </div>
+          <div class="input-group">
+            <label>Phone:</label>
+            <input type="tel" name="tel" class="form-control" ng-model="schedule.publisherPhone"
+                   required
+                   ui-mask="(999) 999-9999" placeholder="(___) ___-____"/>
+          </div>
+          <br>
 
-        <ul style="list-style: none;">
-          <li ng-repeat="day in days">
-            <input
-              type="checkbox"
-              name="scheduleDays[]"
-              value="day.value"
-              ng-checked="schedule.days.indexOf(day.value) > -1"
-              ng-click="toggleDay(day)"
-            ><label>{{ day.name }}</label>
-          </li>
-        </ul>
+          <ul style="list-style: none;">
+            <li ng-repeat="day in days">
+              <label>
+              <input
+                type="checkbox"
+                name="scheduleDays[]"
+                value="day.value"
+                ng-checked="schedule.days.indexOf(day.value) > -1"
+                ng-click="toggleDay(day)"
+              > {{ day.name }}</label>
+            </li>
+          </ul>
 
-        <div>
-          <timepicker ng-model="schedule.times" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
-        </div>
+          <div>
+            <timepicker ng-model="schedule.times" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+          </div>
+          
+          <br>
 
-        
+          <button type="submit" class="btn btn-primary">Save</button>
 
-        <button type="submit" class="btn btn-primary">Save</button>
-      </form>
+        </form>
+      </div>
     </div>
+    <div class="col-md-3"></div>
   </div>
 </div>

@@ -26,10 +26,10 @@ exports.checkin = function(req, res, callback) {
         pass: '41tniop3'
     }
   });
-  var toAddress = '';
-  var emailSubject = '';
-  var emailText = '';
-  var emailHTML = '';
+  var toAddress = 'brad@bradmellema.com';
+  var emailSubject = 'default subject';
+  var emailText = 'default text';
+  var emailHTML = 'default HTML';
   var mailOptions = {
     from: 'DoingFine <updates@doingfine.com>', // sender address
     to: toAddress,//, baz@blurdybloop.com', // list of receivers
@@ -49,20 +49,22 @@ exports.checkin = function(req, res, callback) {
       }
       else if(schedule.subscriberCommunicationType === 'Email'){
         //get subscriber email from user.model 
-        var x = typeof schedule.subscriberEmail;
-        console.log(x + 'typeof');
         if(typeof schedule.subscriberEmail === 'undefined'){
-          console.log(schedule.subscriberID);
-          console.log(":::::::::::::::::::");
           User.findById(schedule.subscriberID, function (err, user) {
             if (err) console.log(err);
             if (!user){
               console.log("user not found");
             }
-            //else{
-              console.log(user.email);
-              schedule.subscriberEmail = user.email;
-            //}
+          }).exec().then(function(u){
+            var x = u;
+            console.log("Promise:::::::::::::::::::");
+            console.log(x + 'typeof');
+            console.log(schedule.subscriberID);
+            console.log(user.email);
+            //schedule.subscriberEmail = user.email;
+            console.log("endPromise:::::::::::::::::::");
+          }, function(err){
+            console.log("Promise: " + err);
           });
         }
         //send email to subscriber

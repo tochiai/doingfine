@@ -7,10 +7,10 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <td>Name</td>
+            <td>Loved One</td>
             <td>Phone</td>
             <td>Days</td>
-            <td>Times</td>
+            <td>Checkin Times</td>
             <td>Contact Method</td>
           </tr>
         </thead>
@@ -20,13 +20,13 @@
             <td>{{ schedule.publisherPhone | tel }}</td>
             <td><span ng-repeat="day in schedule.days">{{ formatDay(day) }}{{ $last ? '' : ', ' }}</span></td>
             <td><span ng-repeat="time in schedule.times">{{ time }}{{ $last ? '' : ', ' }}</span></td>
-            <td>{{ schedule.comm }}</td>
-            <td><button class="btn btn-sm btn-primary" ng-click="edit(schedule)">Edit</button></td>
+            <td>{{ schedule.publisherCheckin }}</td>
+            <td><button class="btn btn-sm btn-default" ng-click="edit(schedule)">Edit</button></td>
             <td><button class="btn btn-sm btn-danger" ng-click="destroy(schedule)">Delete</button></td>
           </tr>
         </tbody>
       </table>
-      <button class="btn btn-lg btn-success" ui-sref="publisher-create">+ Add Schedule</button>
+      <button class="btn btn-lg btn-primary" ui-sref="publisher-create">+ Add Schedule</button>
     </div>
   </div>
 </div>
