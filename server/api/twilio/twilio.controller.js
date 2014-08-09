@@ -18,12 +18,11 @@ exports.checkin = function(req, res, callback) {
   }
 
   var senderPhone = req.query.From;
-  console.log('transporter malfunction');
   var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: 'walkermellema@gmail.com',
-        pass: '41tniop3'
+        user: 'doingfineapp@gmail.com',
+        pass: 'Doingfine12345'
     }
   });
 

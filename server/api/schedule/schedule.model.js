@@ -43,8 +43,6 @@ ScheduleSchema.path('subscriberPhone')
 
 ScheduleSchema.path('publisherCheckin')
   .validate(function(checkin){
-    console.log(checkin)
-    //return phone[1] === '1'
   }, 'This is the way publisher wants to checkin');
 
 ScheduleSchema.path('subscriberCommunicationType')
