@@ -26,17 +26,6 @@ exports.checkin = function(req, res, callback) {
         pass: '41tniop3'
     }
   });
-  var toAddress = 'brad@bradmellema.com';
-  var emailSubject = 'default subject';
-  var emailText = 'default text';
-  var emailHTML = 'default HTML';
-  var mailOptions = {
-    from: 'DoingFine <updates@doingfine.com>', // sender address
-    to: toAddress,//, baz@blurdybloop.com', // list of receivers
-    subject: emailSubject, // Subject line
-    text: emailText, // plaintext body
-    html: '<b>' + emailHTML + '</b>' // html body
-  };
 
 
 
@@ -56,32 +45,31 @@ exports.checkin = function(req, res, callback) {
               console.log("user not found");
             }
           }).exec().then(function(u){
-            var x = u;
-            console.log("Promise:::::::::::::::::::");
-            console.log(x + 'typeof');
-            console.log(schedule.subscriberID);
-            console.log(user.email);
-            //schedule.subscriberEmail = user.email;
-            console.log("endPromise:::::::::::::::::::");
+            schedule.subscriberEmail = u.email;
+            //send email to subscriber
+            var toAddress = schedule.subscriberEmail;
+            var emailSubject = schedule.publisherName + ' status update';
+            var emailText = schedule.publisherName + ' has checked in via DoingFine.';
+            var emailHTML = schedule.publisherName + ' has checked in via DoingFine.';
+            var mailOptions = {
+              from: 'DoingFine <updates@doingfine.com>', // sender address
+              to: toAddress,//, baz@blurdybloop.com', // list of receivers
+              subject: emailSubject, // Subject line
+              text: emailText, // plaintext body
+              html: '<b>' + emailHTML + '</b>' // html body
+            };
+            transporter.sendMail(mailOptions, function(error, info){
+              if(error){
+                  console.log(error + 'this is the sendMail error');
+              }
+              else{
+                  console.log('Message sent: ' + info.response);
+              }
+            });
           }, function(err){
             console.log("Promise: " + err);
           });
         }
-        //send email to subscriber
-        toAddress = schedule.subscriberEmail;
-        emailSubject = schedule.publisherName + ' status update';
-        emailText = schedule.publisherName + ' has checked in via DoingFine.';
-        emailHTML = schedule.publisherName + ' has checked in via DoingFine.';
-        console.log(schedule.subscriberEmail + 'subscriber email');
-        transporter.sendMail(mailOptions, function(error, info){
-          if(error){
-              console.log(error + 'this is the sendMail error');
-          }
-          else{
-              console.log('Message sent: ' + info.response);
-          }
-  });
-        
       }
     });
     callback();
