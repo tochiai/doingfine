@@ -52,11 +52,11 @@ angular.module('doingFineApp')
 
     // toggle selection for a given day by name
     $scope.toggleDay = function toggleDays(day) {
-      var idx = $scope.schedule.days.indexOf(day);
+      var index = $scope.schedule.days.indexOf(day.value);
 
       // is currently selected
-      if (idx > -1) {
-        $scope.schedule.days.splice(idx, 1);
+      if (index > -1) {
+        $scope.schedule.days.splice(index, 1);
       }
 
       // is newly selected
