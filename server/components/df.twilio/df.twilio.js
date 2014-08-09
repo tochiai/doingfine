@@ -6,8 +6,8 @@ var AUTH_TOKEN = 'c9ba89f331e84936155f1916a5bca2fb';
 // see: http://twilio.github.io/twilio-node/
 var client = require('twilio')(ACCOUNT_SID, AUTH_TOKEN);
 var fromPhone = process.env.NODE_ENV === 'production' ? '+18052904005' : process.env.PHONE_NUMBER;
-
-
+var server = process.env.NODE_ENV === 'production' ? 'http://doingfine.azurewebsites.net' : process.env.TWILIO_URL;
+var twilioUrl = server +  '/api/twilio/call/'
 module.exports.sendText = function(phone, msg) {
   //Send an text message
   client.sendMessage({
@@ -36,7 +36,7 @@ module.exports.call = function(phone){
   client.makeCall({
     to: phone, // Any number Twilio can call
     from: fromPhone, // A number you bought from Twilio and can use for outbound communication
-    url: 'https://doingfine.localtunnel.me/api/twilio/call' // A URL that produces an XML document (TwiML) which contains instructions for the call
+    url: twilioUrl // A URL that produces an XML document (TwiML) which contains instructions for the call
 
     }, function(err, responseData) {
       if(err){
