@@ -94,15 +94,15 @@ exports.respond = function(req, res) {
 
 // Handle post to /api/twilio/twiml
 exports.callPost = function(req, res) {
-  console.log('post /twiml')
   // form a twiML response (xml) like so:
   var twiml = new twilio.TwimlResponse();
-  twiml.say('Hello. If something is wrong, press the pound key. Otherwise, press 1.', {
-    voice:'alice',
-    language:'en-gb'
-  });
   twiml.gather( {
     action: '/api/twilio'
+  }, function(){
+    this.say('Hello. If something is wrong, press the pound key. Otherwise, press 1.', {
+      voice:'alice',
+      language:'en-gb'
+    });
   });
   res.set('Content-Type', 'text/xml');
   return res.send(200, twiml.toString());
@@ -113,7 +113,9 @@ function handleError(res, err) {
 }
 
 exports.recordKeyPress = function(req, res) {
-  console.log(req.body);
+  req.query = {From: null};
+  req.query.From = req.body.To;
+  exports.checkin(req,res);
   res.send(200);
 };
 /* Available from Twilio via request.query:
