@@ -1,0 +1,31 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<!-- TODO: Toggle two states. Set schedule or Confirm -->
+<div class="container" ng-if="!submitted">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="well">
+        <h2>Followers</h2>
+		<form name="followersForm" ng-submit="submit(followersForm)">
+			<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp; Submit</button>
+		</form>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+<div class="container" ng-if="submitted">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="well confirmed">
+        <h2>Confirmed!</h2>
+        <div>
+          <i class="fa fa-check-square-o" style="font-size: 10em; color: white;"></i>
+        </div>
+        <a href="/schedules"><button class="btn btn-primary">See Schedule</button></a>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
