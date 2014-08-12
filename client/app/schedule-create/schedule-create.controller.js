@@ -2,7 +2,7 @@
 
 angular.module('doingFineApp')
 
-  .controller('ScheduleCreateCtrl', function ($scope, Schedule) {
+  .controller('ScheduleCreateCtrl', function ($scope, Schedule, $state) {
     //verify that data from '/publisher-create' state persists through Schedule factory
     console.log(Schedule.schedule);
 
@@ -72,13 +72,13 @@ angular.module('doingFineApp')
 
     $scope.submit = function(form){
       if(form.$valid){
-        $scope.submitted = true;
         var minutes = ($scope.schedule.times.getMinutes() < 10 ? '0' : '') + $scope.schedule.times.getMinutes();
 
 
         Schedule.schedule.times = [$scope.schedule.times.getHours() + ':' + minutes];
 
         Schedule.submit($scope.schedule);
+        $state.go('followers');
         //Do AJAX request that sends object in the following format (coming from schedule Schema):
         //{
         //   days: [Number], //0 = Sunday, 1 = Monday, etc...
