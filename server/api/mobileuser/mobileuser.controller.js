@@ -69,6 +69,23 @@ exports.destroy = function(req, res) {
   });
 };
 
+exports.verify = function(req, res) {
+  if(req.body._id) { delete req.body._id; }
+  Mobileuser.findById(req.params.id, function (err, mobileuser) {
+    if (err) { return handleError(res, err); }
+    if(!mobileuser) { return res.send(404); }
+    if(req.body.code === mobileuser.code){
+      var updated = _.merge(mobileuser, {verified: true});
+      updated.save(function (err) {
+        if (err) { return handleError(res, err); }
+        return res.json(200, mobileuser);
+      });
+    } else {
+      res.send(401, mobileuser);
+    }
+  });
+};
+
 function handleError(res, err) {
   return res.send(500, err);
 }
