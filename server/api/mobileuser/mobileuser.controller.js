@@ -5,18 +5,10 @@ var Mobileuser = require('./mobileuser.model');
 var twilio = require('../../components/df.twilio/df.twilio.js');
 // Get list of mobileusers
 exports.index = function(req, res) {
-  console.log('req query', req.query);
-  if(req.query.phone && req.query.udid){
-    Mobileuser.find({phone: req.query.phone, udid: req.query.udid, name: req.query.name}, function (err, mobileusers) {
-      if(err) { return handleError(res, err); }
-      return res.json(200, mobileusers);
-    });
-  } else {
-    Mobileuser.find(function (err, mobileusers) {
-      if(err) { return handleError(res, err); }
-      return res.json(200, mobileusers);
-    });
-  }
+  Mobileuser.find(function (err, mobileusers) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, mobileusers);
+  });
 };
 
 // Get a single mobileuser
@@ -36,7 +28,6 @@ exports.create = function(req, res) {
     req.body.code = code;
     req.body.verified = false;
   } 
-  console.log('req body for mobileuser creation: ', req.body);
   Mobileuser.create(req.body, function(err, mobileuser) {
     if(err) { return handleError(res, err); }
     return res.json(201, mobileuser);
