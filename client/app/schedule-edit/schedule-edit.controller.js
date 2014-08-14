@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('doingFineApp')
-  .controller('EditScheduleCtrl', function ($scope, $rootScope, $state, Schedule) {
+  .controller('ScheduleEditCtrl', function ($scope, $rootScope, $state, Schedule) {
 
     if (!$rootScope.editSchedule) {
       $state.go('schedules');
