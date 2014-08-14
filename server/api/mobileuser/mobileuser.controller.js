@@ -23,7 +23,7 @@ exports.show = function(req, res) {
 // Creates a new mobileuser in the DB.
 exports.create = function(req, res) {
   if(!req.body.code){
-    var code = Math.floor(Math.random()*9999);
+    var code = Math.floor(Math.random()*8999 + 1000);
     twilio.sendText(req.body.phone, 'Doing Fine confirmation code: ' + code);
     req.body.code = code;
     req.body.verified = false;
