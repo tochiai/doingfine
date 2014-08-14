@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('ng').filter('tel', function () {
     return function (tel) {
         if (!tel) { return ''; }
@@ -33,12 +35,12 @@ angular.module('ng').filter('tel', function () {
                 return tel;
         }
 
-        if (country == 1) {
-            country = "";
+        if (country === 1) {
+            country = '';
         }
 
         number = number.slice(0, 3) + '-' + number.slice(3);
 
-        return (country + " (" + city + ") " + number).trim();
+        return (country + ' (' + city + ') ' + number).trim();
     };
 });
