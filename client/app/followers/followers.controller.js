@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('doingFineApp')
-  .controller('FollowersCtrl', function ($scope, $state) {
-    $scope.submit = function(followers){
+  .controller('FollowersCtrl', function ($scope) {
+    $scope.submit = function(){
       $scope.submitted = true;
     };
   });
