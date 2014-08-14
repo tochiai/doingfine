@@ -20,6 +20,18 @@
           </div>
           <br>
 
+          <h3>How do they want to check-in?</h3>
+
+          <div class="input-group">
+            <select ng-model="schedule.publisherCheckin" class="form-control" required>
+              <option value="">Select:</option>
+              <option>SMS</option>
+              <option>Phone</option>
+            </select>
+          </div>
+
+          <br>
+
           <ul style="list-style: none;">
             <li ng-repeat="day in days">
               <label>
@@ -38,7 +50,7 @@
           </div>
           
           <br>
-          <h2>Select how you want to receive your updates.</h2>
+          <h3>Select how you want to receive your updates.</h3>
           <div class="input-group">
             <select ng-model='schedule.subscriberCommunicationType' required class="form-control">
               <option value="">Select:</option>
