@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var Mobileuser = require('./mobileuser.model');
 var twilio = require('../../components/df.twilio/df.twilio.js');
+var mongoose = require('mongoose');
 // Get list of mobileusers
 exports.index = function(req, res) {
   Mobileuser.find(function (err, mobileusers) {
@@ -78,7 +79,31 @@ exports.verify = function(req, res) {
     }
   });
 };
-
+exports.getFriends = function(req, res) {
+  Mobileuser.findById(req.params.id, function(err, mobileuser) {
+    var friends = mobileuser.friends.slice();
+    // cast to ObjectId for mongoose query
+    friends.map(function(element){
+      return mongoose.Types.ObjectId(element);
+    });
+    Mobileuser.find({_id: {$in: friends}}, function(err, foundFriends){
+      if (err) { return handleError(res, err); }
+      if (!foundFriends) {return res.send(404);}
+      return res.json(200, foundFriends);
+    });
+  });
+};
+exports.addFriends = function(req, res) {
+  Mobileuser.findById(req.params.id, function(err, mobileuser) {
+    mobileuser.friends = mobileuser.friends.concat(req.body.friends);
+    if (err) { return handleError(res, err); }
+    if(!mobileuser) { return res.send(404); }
+    mobileuser.save(function (err, data) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, data);
+    });
+  });
+}
 function handleError(res, err) {
   return res.send(500, err);
 }

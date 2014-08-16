@@ -9,7 +9,8 @@ var MobileuserSchema = new Schema({
   first: String,
   last: String,
   verified: Boolean,
-  code: String
+  code: String,
+  friends: {type: [String], default: []}
 });
 
 module.exports = mongoose.model('Mobileuser', MobileuserSchema);
