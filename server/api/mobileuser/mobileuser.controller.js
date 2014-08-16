@@ -26,7 +26,6 @@ exports.create = function(req, res) {
   var code = Math.floor(Math.random()*8999 + 1000);
   req.body.code = code;
   req.body.verified = false;
-  res.header('Access-Control-Allow-Origin: *');
   Mobileuser.find({phone: req.body.phone}).exec().then(function(mobileusers){
     if(mobileusers.length === 0){
       twilio.sendText(req.body.phone, 'Doing Fine confirmation code: ' + code);
