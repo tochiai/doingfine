@@ -5,7 +5,8 @@ var moment = require('moment');
 var _ = require('lodash');
 moment().format();
 
-// get Day as 0-6 and Time as '13:15' for Now (used to search schedules, then send checkins)
+// get Day as 0-6 and Time as '13:15'
+// (used to search schedules, then send checkins)
 var getDayTime = module.exports.getDayTime = function() {
   var date = {};
   var now = moment().utc().zone('-07:00');

@@ -26,17 +26,30 @@ exports.create = function(req, res) {
   var code = Math.floor(Math.random()*8999 + 1000);
   req.body.code = code;
   req.body.verified = false;
+  //logic for handling active users, unverified users, and invited users
   Mobileuser.find({phone: req.body.phone}).exec().then(function(mobileusers){
     if(mobileusers.length === 0){
-      twilio.sendText(req.body.phone, 'Doing Fine confirmation code: ' + code);
-      Mobileuser.create(req.body, function(err, mobileuser) {
-        if(err) { return handleError(res, err); }
-        return res.json(201, mobileuser);
-      });
+      if(!req.body.friends){
+        twilio.sendText(req.body.phone, 'DoingFine confirmation code: ' + code);
+        Mobileuser.create(req.body, function(err, mobileuser) {
+          if(err) { return handleError(res, err); }
+          return res.json(201, mobileuser);
+        });
+      } else {
+        //get friend that matches id passed in with request
+        Mobileuser.findById(req.body.friends[0], function(err, mobileuser){
+          if(err) { return handleError(res, err); }
+          var message = mobileuser.first + ' ' + mobileuser.last +
+          ' has invited you to join DoingFine. Sign up at ' +
+          'doingfine.azurewebsites.net';
+          twilio.sendText(req.body.phone, message);
+          return res.json(201, mobileuser);
+        });
+      }
     } else {
       var foundUser = mobileusers[0];
       if(!foundUser.verified){
-        twilio.sendText(req.body.phone, 'Doing Fine confirmation code: ' + code);
+        twilio.sendText(req.body.phone, 'DoingFine confirmation code: ' + code);
         updateById(foundUser._id, req, res);
       } else {
         return res.send(403, 'User already exists');
@@ -63,6 +76,7 @@ exports.destroy = function(req, res) {
   });
 };
 
+// Sets user as valid if request contains correct confirmation code 
 exports.verify = function(req, res) {
   if(req.body._id) { delete req.body._id; }
   Mobileuser.findById(req.params.id, function (err, mobileuser) {
@@ -79,6 +93,8 @@ exports.verify = function(req, res) {
     }
   });
 };
+
+// Responds with array of user objects who are friends of url-specified user
 exports.getFriends = function(req, res) {
   Mobileuser.findById(req.params.id, function(err, mobileuser) {
     var friends = mobileuser.friends.slice();
@@ -93,6 +109,8 @@ exports.getFriends = function(req, res) {
     });
   });
 };
+
+// Append friends to url-specified user's list of friends
 exports.addFriends = function(req, res) {
   Mobileuser.findById(req.params.id, function(err, mobileuser) {
     mobileuser.friends = mobileuser.friends.concat(req.body.friends);
