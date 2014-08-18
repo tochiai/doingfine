@@ -1,4 +1,4 @@
-var config = require('../../config/environment/local.env.js');
+var config = require(__dirname + '/../../config/environment/local.env.js');
 console.log(config);
 //require the Twilio module and create a REST client
 var ACCOUNT_SID = process.env.ACCOUNT_SID || config.TWILIO_ACCOUNT_SID;
