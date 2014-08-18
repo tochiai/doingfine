@@ -7,16 +7,15 @@ var _ = require('lodash');
 var User = require('../user/user.model');
 var nodemailer = require('nodemailer');
 
-// When twilio receives an SMS addressed to the registered DoingFine phone number, it makes a GET request to /api/twilio
+// When twilio receives an SMS addressed to the registered
+// DoingFine phone number, it makes a GET request to /api/twilio
 // twilio can receive an twiML (xml) response with instructions (ie an SMS resonse message or phone call script)
 // to update on twilio: https://www.twilio.com/user/account/phone-numbers/PN87b2b73d36ba81ded076a9e203e357eb
 // previous xml request url in alpha app (nelson's pre-HR ios version): http://www.doingfineapp.com/twilio/sms-response.xml
 exports.checkin = function(req, res, callback) {
-
   if (!callback) {
     callback = function() {};
   }
-
   var senderPhone = req.query.From;
   var transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -25,8 +24,6 @@ exports.checkin = function(req, res, callback) {
         pass: 'Doingfine12345'
     }
   });
-
-
 
   var senderPhone = req.query.From;
 
@@ -99,7 +96,9 @@ exports.callPost = function(req, res) {
   twiml.gather( {
     action: '/api/twilio'
   }, function(){
-    this.say('Hello. If something is wrong, press the pound key. Otherwise, press 1.', {
+    var recordedMessage = 'Hello. If something is wrong, ' +
+    ' press the pound key. Otherwise, press 1.';
+    this.say(recordedMessage, {
       voice:'alice',
       language:'en-gb'
     });
