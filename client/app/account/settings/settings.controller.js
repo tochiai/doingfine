@@ -17,19 +17,18 @@ angular.module('doingFineApp')
           $scope.message = '';
         });
       }
-		};
+    };
+
+    $scope.accountUpdate = function(topForm) {
+      User.accountUpdate($scope.user);
+    };
 
     var getUser = function() {
       User.get(function(result){
         $scope.user = result;
-        //$scope.userName = result.name;
-        $scope.user.phone = result.phone.slice(2);
-        //$scope.email = result.email;
-        //console.log(result);
-        // $http.get('api/users/' + $scope.userID + '/schedules')
-        //   .success(function(data){
-        //     $scope.mySchedules = data;
-        //   });
+        if("+1" === result.phone.slice(0,2)){
+          $scope.user.phone = result.phone.slice(2);
+        }
       });
     };
     getUser();
