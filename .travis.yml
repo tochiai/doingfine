@@ -7,5 +7,4 @@ before_script:
 services: mongodb
 env: 
     global:
-        - secure: "MSZsiLxe+61I0u0tk6d+wWW5bOi5e8M2qVPv0GUtxu4Vft2oG1ffxdC6tKXoEXC6RpsnhHERdrstSk7JXO/pCbHRmGgI20JwucvRfvS5aOaFKly7EraoOAWnUBjThpwUUeq511vsahK02JPt1I5DnUpBMwgy/PWd3JZwzzD6/NQ="
-        - secure: "dXm0ljQdvhP7ZdUL4ZKuieTFQ44f0kEmxCVeZ2l9yQdFfJ4mR2KkakQuWfXpuh8ZbdPjhoMIq4/0y3fEdVT0yfZxXgsHYEg2OWFPA0jQ60dK0YoJczxf2xynvjunOvh8yVTcraWJpMWkT8yXgk1G9qxzZeIXPk0LDz8hwSJFCRo="
+        secure: "kINzXN60o68vnvkhWNaaIwsPhUUAwjuUjkq9f+YuP5AYAJIyOdXtnHYpZnMxU7tSuz8nczAXRHBj0EW2M7Q4EIpEMQiPtZ9ejxzqHm4A1zMTSftvte7tK4Gs3iWyI5Sexi3Guy3Q20DtBr1gPDyrkS3G528R/vly5DFp6XDcik0="
