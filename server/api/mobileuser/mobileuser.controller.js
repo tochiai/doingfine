@@ -30,19 +30,24 @@ exports.create = function(req, res) {
   Mobileuser.find({phone: req.body.phone}).exec().then(function(mobileusers){
     if(mobileusers.length === 0){
       if(!req.body.friends){
-        twilio.sendText(req.body.phone, 'Doing Fine confirmation code: ' + code);
         Mobileuser.create(req.body, function(err, mobileuser) {
           if(err) { return handleError(res, err); }
+          twilio.sendText(req.body.phone, 'DoingFine confirmation code: ' + code);
           return res.json(201, mobileuser);
         });
       } else {
         //get friend that matches id passed in with request
         Mobileuser.findById(req.body.friends[0], function(err, mobileuser){
           if(err) { return handleError(res, err); }
-          var message = mobileuser.first + ' ' + mobileuser.last + ' has invited ' +
-          'you to join DoingFine. Sign up at doingfine.azurewebsites.net';
-          twilio.sendText(req.body.phone, message);
-          return res.json(201, mobileuser);
+          var inviter = mobileuser;
+          Mobileuser.create(req.body, function(err, mobileuser) {
+            if(err) { return handleError(res, err); }
+            twilio.sendText(req.body.phone, message);
+            var message = inviter.first + ' ' + inviter.last +
+            ' has invited you to join DoingFine. Sign up at ' +
+            'doingfine.azurewebsites.net';
+            return res.json(201, mobileuser);
+          });
         });
       }
     } else {
@@ -111,6 +116,7 @@ exports.getFriends = function(req, res) {
 
 // Append friends to url-specified user's list of friends
 exports.addFriends = function(req, res) {
+  console.log(req.body);
   Mobileuser.findById(req.params.id, function(err, mobileuser) {
     mobileuser.friends = mobileuser.friends.concat(req.body.friends);
     if (err) { return handleError(res, err); }
