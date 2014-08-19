@@ -3,7 +3,7 @@ var config;
 if(fs.existsSync(__dirname + "/../../config/local.env.js")){
   config = require(__dirname + "/../../config/local.env.js");
 }
-console.log(process);
+console.log('sid truthy: ', !!process.env.TWILIO_ACCOUNT_SID);
 //require the Twilio module and create a REST client
 var ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID || config ? 
   config.TWILIO_ACCOUNT_SID : '';
