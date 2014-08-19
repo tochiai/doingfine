@@ -26,9 +26,9 @@ var getDayTime = module.exports.getDayTime = function() {
 // send checkin updates to subscriber of each schedule passed in
 var sendCheckins = module.exports.sendCheckins = function(err, schedules) {
   if(err) { throw err; };
-  var message = ' wants to know you are OK. Please check in by replying with any text message.';
   _.forEach(schedules, function(schedule) {
     if(schedule.publisherCheckin === 'SMS'){
+      var message = ' wants to know you are OK. Please check in by replying with any text message.';
       twilio.sendText(schedule.publisherPhone, schedule.subscriberName + message);
     } else if(schedule.publisherCheckin === 'Phone') {
       twilio.call(schedule.publisherPhone)
