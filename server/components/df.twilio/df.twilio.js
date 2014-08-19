@@ -5,10 +5,8 @@ if(fs.existsSync(__dirname + "/../../config/local.env.js")){
 }
 console.log('sid truthy: ', !!process.env.TWILIO_ACCOUNT_SID);
 //require the Twilio module and create a REST client
-var ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID || config ? 
-  config.TWILIO_ACCOUNT_SID : '';
-var AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN || config ? 
-  config.TWILIO_AUTH_TOKEN : '';
+var ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID || config ?  config.TWILIO_ACCOUNT_SID : '';
+var AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN || config ?  config.TWILIO_AUTH_TOKEN : '';
 
 // twilio has amazing docs for node
 // see: http://twilio.github.io/twilio-node/
