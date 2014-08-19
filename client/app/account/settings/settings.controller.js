@@ -20,16 +20,16 @@ angular.module('doingFineApp')
     };
 
     $scope.accountUpdate = function(topForm) {
-      User.accountUpdate($scope.user);
+      $scope.submitted = true;
+      if(topForm.$valid){
+        User.accountUpdate($scope.user);
+      }
     };
 
-    var getUser = function() {
-      User.get(function(result){
-        $scope.user = result;
-        if("+1" === result.phone.slice(0,2)){
-          $scope.user.phone = result.phone.slice(2);
-        }
-      });
-    };
-    getUser();
+    User.get(function(result){
+      $scope.user = result;
+      if("+1" === result.phone.slice(0,2)){
+        $scope.user.phone = result.phone.slice(2);
+      }
+    });
   });

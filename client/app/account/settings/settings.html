@@ -9,43 +9,43 @@
 
         <h1>Change Account Info</h1>
 
-        <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,'has-error': form.name.$invalid && submitted }">
+        <div class="form-group" ng-class="{ 'has-success': topForm.name.$valid && submitted,'has-error': topForm.name.$invalid && submitted }">
           <label>Name</label>
 
           <input type="text" name="name" class="form-control" ng-model="user.name" required />
-          <p class="help-block" ng-show="form.name.$error.required && submitted">
+          <p class="help-block" ng-show="topForm.name.$error.required && submitted">
             A name is required
           </p>
         </div>
 
-        <div class="form-group" ng-class="{ 'has-success': form.phone.$valid && submitted,'has-error': form.phone.$invalid && submitted }">
+        <div class="form-group" ng-class="{ 'has-success': topForm.phone.$valid && submitted,'has-error': topForm.phone.$invalid && submitted }">
           <label>Phone</label>
 
           <input type="tel" name="tel" class="form-control" ng-model="user.phone"
                  required
                  mongoose-error ui-mask="(999) 999-9999" placeholder="(___) ___-____"/>
-          <p class="help-block" ng-show="form.phone.$error.phone && submitted">
+          <p class="help-block" ng-show="topForm.phone.$error.phone && submitted">
             Doesn't look like a valid phone number.
           </p>
-          <p class="help-block" ng-show="form.phone.$error.required && submitted">
+          <p class="help-block" ng-show="topForm.phone.$error.required && submitted">
             What's your phone number?
           </p>
-          <p class="help-block" ng-show="form.phone.$error.mongoose">
+          <p class="help-block" ng-show="topForm.phone.$error.mongoose">
             {{ errors.phone }}
           </p>
         </div>
 
-        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,'has-error': form.email.$invalid && submitted }">
+        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,'has-error': topForm.email.$invalid && submitted }">
           <label>Email</label>
 
           <input type="email" name="email" class="form-control" ng-model="user.email" required mongoose-error/>
-          <p class="help-block" ng-show="form.email.$error.email && submitted">
+          <p class="help-block" ng-show="topForm.email.$error.email && submitted">
             Doesn't look like a valid email.
           </p>
-          <p class="help-block" ng-show="form.email.$error.required && submitted">
+          <p class="help-block" ng-show="topForm.email.$error.required && submitted">
             What's your email address?
           </p>
-          <p class="help-block" ng-show="form.email.$error.mongoose">
+          <p class="help-block" ng-show="topForm.email.$error.mongoose">
             {{ errors.email }}
           </p>
         </div>
