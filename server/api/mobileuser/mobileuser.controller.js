@@ -116,7 +116,6 @@ exports.getFriends = function(req, res) {
 
 // Append friends to url-specified user's list of friends
 exports.addFriends = function(req, res) {
-  console.log(req.body);
   Mobileuser.findById(req.params.id, function(err, mobileuser) {
     mobileuser.friends = mobileuser.friends.concat(req.body.friends);
     if (err) { return handleError(res, err); }
