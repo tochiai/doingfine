@@ -53,7 +53,7 @@ exports.create = function(req, res) {
     } else {
       var foundUser = mobileusers[0];
       if(!foundUser.verified){
-        twilio.sendText(req.body.phone, 'Doing Fine confirmation code: ' + code);
+        twilio.sendText(req.body.phone, 'DoingFine confirmation code: ' + code);
         updateById(foundUser._id, req, res);
       } else {
         return res.send(403, 'User already exists');
