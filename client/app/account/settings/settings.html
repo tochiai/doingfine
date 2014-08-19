@@ -4,9 +4,61 @@
   <div class="row">
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
-      <h1>Change Password</h1>
+
+      <form class="form" name="topForm" ng-submit="accountUpdate(topForm)" novalidate>
+
+        <h1>Change Account Info</h1>
+
+        <div class="form-group" ng-class="{ 'has-success': topForm.name.$valid && submitted,'has-error': topForm.name.$invalid && submitted }">
+          <label>Name</label>
+
+          <input type="text" name="name" class="form-control" ng-model="user.name" required />
+          <p class="help-block" ng-show="topForm.name.$error.required && submitted">
+            A name is required
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': topForm.phone.$valid && submitted,'has-error': topForm.phone.$invalid && submitted }">
+          <label>Phone</label>
+
+          <input type="tel" name="tel" class="form-control" ng-model="user.phone"
+                 required
+                 mongoose-error ui-mask="(999) 999-9999" placeholder="(___) ___-____"/>
+          <p class="help-block" ng-show="topForm.phone.$error.phone && submitted">
+            Doesn't look like a valid phone number.
+          </p>
+          <p class="help-block" ng-show="topForm.phone.$error.required && submitted">
+            What's your phone number?
+          </p>
+          <p class="help-block" ng-show="topForm.phone.$error.mongoose">
+            {{ errors.phone }}
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,'has-error': topForm.email.$invalid && submitted }">
+          <label>Email</label>
+
+          <input type="email" name="email" class="form-control" ng-model="user.email" required mongoose-error/>
+          <p class="help-block" ng-show="topForm.email.$error.email && submitted">
+            Doesn't look like a valid email.
+          </p>
+          <p class="help-block" ng-show="topForm.email.$error.required && submitted">
+            What's your email address?
+          </p>
+          <p class="help-block" ng-show="topForm.email.$error.mongoose">
+            {{ errors.email }}
+          </p>
+        </div>
+
+        <button class="btn btn-lg btn-primary" type="submit">Save Changes</button>
+      </form>
+
 
       <form class="form" name="form" ng-submit="changePassword(form)" novalidate>
+
+        
+
+      <h1>Change Password</h1>
 
         <div class="form-group">
           <label>Current Password</label>
@@ -32,7 +84,7 @@
 
         <p class="help-block"> {{ message }} </p>
 
-        <button class="btn btn-lg btn-primary" type="submit">Save changes</button>
+        <button class="btn btn-lg btn-primary" type="submit">Save Changes</button>
       </form>
     </div>
     <div class="col-sm-3"></div>

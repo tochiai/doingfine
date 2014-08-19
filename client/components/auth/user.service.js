@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('doingFineApp')
-  .factory('User', function ($resource) {
+  .factory('User', function ($http, $resource) {
+
     return $resource('/api/users/:id/:controller', {
       id: '@_id'
     },
@@ -17,6 +18,10 @@ angular.module('doingFineApp')
         params: {
           id:'me'
         }
+      },
+      accountUpdate: {
+        method: 'PUT'
       }
 	  });
+
   });

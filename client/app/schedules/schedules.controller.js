@@ -11,7 +11,7 @@ angular.module('doingFineApp')
 
     $scope.edit = function(schedule){
       $rootScope.editSchedule = schedule;
-      $state.go('edit-schedule');
+      $state.go('schedule-edit');
     };
 
     $scope.destroy = function(schedule) {
